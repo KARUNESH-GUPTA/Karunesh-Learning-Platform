@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>उच्च शिक्षा प्लेटफॉर्म</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Primitive Color Tokens */
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-teal-800: rgba(41, 150, 161, 1);
+            --color-red-400: rgba(255, 84, 89, 1);
+            --color-red-500: rgba(192, 21, 47, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+
+            /* RGB versions for opacity control */
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-slate-500-rgb: 98, 108, 113;
+            --color-red-500-rgb: 192, 21, 47;
+            --color-red-400-rgb: 255, 84, 89;
+            --color-orange-500-rgb: 168, 75, 47;
+            --color-orange-400-rgb: 230, 129, 97;
+
+            /* Background color tokens */
+            --color-bg-1: rgba(59, 130, 246, 0.08);
+            --color-bg-2: rgba(245, 158, 11, 0.08);
+            --color-bg-3: rgba(34, 197, 94, 0.08);
+            --color-bg-4: rgba(239, 68, 68, 0.08);
+            --color-bg-5: rgba(147, 51, 234, 0.08);
+            --color-bg-6: rgba(249, 115, 22, 0.08);
+            --color-bg-7: rgba(236, 72, 153, 0.08);
+            --color-bg-8: rgba(6, 182, 212, 0.08);
+
+            /* Semantic Color Tokens */
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-btn-primary-text: var(--color-cream-50);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-error: var(--color-red-500);
+            --color-success: var(--color-teal-500);
+            --color-warning: var(--color-orange-500);
+            --color-info: var(--color-slate-500);
+            --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+
+            /* Typography */
+            --font-family-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-size-xs: 11px;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-size-4xl: 30px;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 550;
+            --font-weight-bold: 600;
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+
+            /* Spacing */
+            --space-4: 4px;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+
+            /* Border Radius */
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+
+            /* Animation */
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Dark mode */
+        [data-color-scheme="dark"] {
+            --color-gray-400-rgb: 119, 124, 124;
+            --color-teal-300-rgb: 50, 184, 198;
+            --color-gray-300-rgb: 167, 169, 169;
+            --color-gray-200-rgb: 245, 245, 245;
+
+            --color-bg-1: rgba(29, 78, 216, 0.15);
+            --color-bg-2: rgba(180, 83, 9, 0.15);
+            --color-bg-3: rgba(21, 128, 61, 0.15);
+            --color-bg-4: rgba(185, 28, 28, 0.15);
+            --color-bg-5: rgba(107, 33, 168, 0.15);
+            --color-bg-6: rgba(194, 65, 12, 0.15);
+            --color-bg-7: rgba(190, 24, 93, 0.15);
+            --color-bg-8: rgba(8, 145, 178, 0.15);
+
+            --color-background: var(--color-charcoal-700);
+            --color-surface: var(--color-charcoal-800);
+            --color-text: var(--color-gray-200);
+            --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+            --color-primary: var(--color-teal-300);
+            --color-primary-hover: var(--color-teal-400);
+            --color-primary-active: var(--color-teal-800);
+            --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+            --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+            --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+            --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+            --color-error: var(--color-red-400);
+            --color-success: var(--color-teal-300);
+            --color-warning: var(--color-orange-400);
+            --color-info: var(--color-gray-300);
+            --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+            --color-btn-primary-text: var(--color-slate-900);
+            --color-card-border: rgba(var(--color-gray-400-rgb), 0.15);
+            --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+        }
+
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: var(--font-size-base);
+            font-family: var(--font-family-base);
+            line-height: var(--line-height-normal);
+            color: var(--color-text);
+            background-color: var(--color-background);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+            font-weight: var(--font-weight-semibold);
+            line-height: var(--line-height-tight);
+            color: var(--color-text);
+        }
+
+        h1 { font-size: var(--font-size-4xl); }
+        h2 { font-size: var(--font-size-3xl); }
+        h3 { font-size: var(--font-size-2xl); }
+        h4 { font-size: var(--font-size-xl); }
+        h5 { font-size: var(--font-size-lg); }
+        h6 { font-size: var(--font-size-base); }
+
+        p {
+            margin: 0 0 var(--space-16) 0;
+        }
+
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: color var(--duration-fast) var(--ease-standard);
+        }
+
+        a:hover {
+            color: var(--color-primary-hover);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-8) var(--space-16);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            line-height: 1.5;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn--primary {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+
+        .btn--primary:hover {
+            background: var(--color-primary-hover);
+        }
+
+        .btn--secondary {
+            background: var(--color-secondary);
+            color: var(--color-text);
+        }
+
+        .btn--secondary:hover {
+            background: var(--color-secondary-hover);
+        }
+
+        .btn--outline {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+        }
+
+        .btn--outline:hover {
+            background: var(--color-secondary);
+        }
+
+        .btn--sm {
+            padding: var(--space-4) var(--space-12);
+            font-size: var(--font-size-sm);
+            border-radius: var(--radius-sm);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Form elements */
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: var(--space-8) var(--space-12);
+            font-size: var(--font-size-base);
+            line-height: 1.5;
+            color: var(--color-text);
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            transition: border-color var(--duration-fast) var(--ease-standard);
+        }
+
+        .form-control:focus {
+            border-color: var(--color-primary);
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        select.form-control {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right var(--space-12) center;
+            background-size: 16px;
+            padding-right: var(--space-32);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--space-8);
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-sm);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-16);
+        }
+
+        /* Card component */
+        .card {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--color-card-border);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: box-shadow var(--duration-normal) var(--ease-standard);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .card__body {
+            padding: var(--space-16);
+        }
+
+        /* Layout */
+        .header {
+            background: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header__content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-16) var(--space-24);
+            gap: var(--space-24);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo h2 {
+            color: var(--color-primary);
+            margin: 0;
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+        }
+
+        .search-bar {
+            display: flex;
+            flex: 1;
+            max-width: 500px;
+            gap: var(--space-8);
+        }
+
+        .search-bar .form-control {
+            flex: 1;
+            border-radius: var(--radius-full);
+        }
+
+        .search-bar .btn {
+            border-radius: var(--radius-full);
+            padding: var(--space-8) var(--space-16);
+        }
+
+        .header__actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: var(--font-size-xl);
+            cursor: pointer;
+            padding: var(--space-8);
+            border-radius: var(--radius-base);
+            transition: all var(--duration-fast) var(--ease-standard);
+        }
+
+        .theme-toggle:hover {
+            background: var(--color-secondary);
+        }
+
+        /* Main Container */
+        .main-container {
+            display: grid;
+            grid-template-columns: 280px 1fr 350px;
+            height: calc(100vh - 80px);
+            background: var(--color-background);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Welcome Section */
+        .welcome-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: var(--space-24);
+        }
+
+        .welcome-content h1 {
+            margin-bottom: var(--space-20);
+            color: var(--color-text);
+        }
+
+        .welcome-content p {
+            margin-bottom: var(--space-32);
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-lg);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--color-surface);
+            border-right: 1px solid var(--color-border);
+            overflow-y: auto;
+            padding: var(--space-20);
+        }
+
+        .sidebar__header h4 {
+            margin: 0 0 var(--space-20) 0;
+            color: var(--color-primary);
+            padding-bottom: var(--space-12);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .nav-section {
+            margin-bottom: var(--space-24);
+        }
+
+        .nav-section h5 {
+            margin: 0 0 var(--space-12) 0;
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-list li {
+            margin-bottom: var(--space-4);
+        }
+
+        .nav-list a {
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            padding: var(--space-10) var(--space-12);
+            border-radius: var(--radius-base);
+            color: var(--color-text);
+            text-decoration: none;
+            transition: all var(--duration-fast) var(--ease-standard);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+        }
+
+        .nav-list a:hover {
+            background: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        .nav-list a.active {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+
+        .year-item {
+            margin-bottom: var(--space-8);
+        }
+
+        .semester-list,
+        .subject-list {
+            margin-left: var(--space-20);
+            margin-top: var(--space-8);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: var(--space-24);
+            overflow-y: auto;
+            background: var(--color-background);
+        }
+
+        /* Video Section */
+        .video-section {
+            margin-bottom: var(--space-32);
+        }
+
+        .video-container {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .video-wrapper {
+            position: relative;
+            background: var(--color-black);
+            aspect-ratio: 16/9;
+        }
+
+        .video-wrapper iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-12) var(--space-16);
+            background: var(--color-bg-1);
+            gap: var(--space-16);
+        }
+
+        .controls-left,
+        .controls-right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .control-btn {
+            background: none;
+            border: none;
+            font-size: var(--font-size-lg);
+            cursor: pointer;
+            padding: var(--space-6);
+            border-radius: var(--radius-sm);
+            transition: all var(--duration-fast) var(--ease-standard);
+            color: var(--color-text);
+        }
+
+        .control-btn:hover {
+            background: var(--color-secondary);
+        }
+
+        .video-time {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+        }
+
+        .speed-selector {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            padding: var(--space-4) var(--space-8);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+        }
+
+        .video-info {
+            padding: var(--space-20);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: var(--space-16);
+        }
+
+        .video-info h3 {
+            margin: 0;
+            color: var(--color-text);
+            flex: 1;
+        }
+
+        .video-actions {
+            display: flex;
+            gap: var(--space-12);
+            flex-wrap: wrap;
+        }
+
+        /* Videos Grid */
+        .videos-grid-section {
+            margin-bottom: var(--space-32);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--space-20);
+        }
+
+        .section-header h3 {
+            margin: 0;
+            color: var(--color-text);
+        }
+
+        .view-options {
+            display: flex;
+            gap: var(--space-8);
+        }
+
+        .view-options .btn.active {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-20);
+        }
+
+        .videos-grid.list-view {
+            grid-template-columns: 1fr;
+        }
+
+        .video-card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--duration-normal) var(--ease-standard);
+            cursor: pointer;
+            border: 1px solid var(--color-card-border);
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 160px;
+            background: var(--color-bg-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-3xl);
+        }
+
+        .video-duration {
+            position: absolute;
+            bottom: var(--space-8);
+            right: var(--space-8);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: var(--space-2) var(--space-8);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+        }
+
+        .video-content {
+            padding: var(--space-16);
+        }
+
+        .video-content h4 {
+            margin: 0 0 var(--space-8) 0;
+            color: var(--color-text);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-tight);
+        }
+
+        .video-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-xs);
+        }
+
+        /* Notebook Panel */
+        .notebook-panel {
+            background: var(--color-surface);
+            border-left: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .notebook-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-16);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .notebook-header h4 {
+            margin: 0;
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+        }
+
+        .notebook-actions {
+            display: flex;
+            gap: var(--space-8);
+        }
+
+        .notebook-content {
+            flex: 1;
+            padding: var(--space-16);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .note-toolbar {
+            display: flex;
+            gap: var(--space-8);
+            margin-bottom: var(--space-16);
+        }
+
+        .note-toolbar input,
+        .note-toolbar select {
+            flex: 1;
+        }
+
+        .note-editor {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            overflow: hidden;
+        }
+
+        .editor-toolbar {
+            display: flex;
+            gap: var(--space-4);
+            padding: var(--space-8);
+            border-bottom: 1px solid var(--color-border);
+            background: var(--color-bg-1);
+        }
+
+        .editor-toolbar button {
+            background: none;
+            border: none;
+            padding: var(--space-6);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            color: var(--color-text);
+            transition: all var(--duration-fast) var(--ease-standard);
+            font-weight: bold;
+        }
+
+        .editor-toolbar button:hover {
+            background: var(--color-secondary);
+        }
+
+        .editor-content {
+            flex: 1;
+            padding: var(--space-12);
+            min-height: 200px;
+            border: none;
+            outline: none;
+            font-family: var(--font-family-base);
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-normal);
+            color: var(--color-text);
+            background: var(--color-surface);
+            resize: none;
+        }
+
+        .voice-status {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            padding: var(--space-8);
+            background: var(--color-bg-4);
+            color: var(--color-text);
+            border-radius: var(--radius-base);
+            margin-top: var(--space-8);
+            font-size: var(--font-size-sm);
+        }
+
+        .saved-notes {
+            border-top: 1px solid var(--color-border);
+            padding: var(--space-16);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .saved-notes h5 {
+            margin: 0 0 var(--space-12) 0;
+            color: var(--color-text);
+            font-size: var(--font-size-sm);
+        }
+
+        .notes-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+        }
+
+        .note-item {
+            padding: var(--space-8);
+            background: var(--color-bg-2);
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-standard);
+        }
+
+        .note-item:hover {
+            background: var(--color-bg-3);
+        }
+
+        .note-item h6 {
+            margin: 0 0 var(--space-4) 0;
+            font-size: var(--font-size-xs);
+            color: var(--color-text);
+        }
+
+        .note-item p {
+            margin: 0;
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+            line-height: var(--line-height-tight);
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.hidden {
+            display: none;
+        }
+
+        .modal__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal__content {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow: hidden;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .modal__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-20);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .modal__header h3 {
+            margin: 0;
+            color: var(--color-text);
+        }
+
+        .modal__close {
+            background: none;
+            border: none;
+            font-size: var(--font-size-xl);
+            cursor: pointer;
+            color: var(--color-text-secondary);
+            padding: var(--space-4);
+            border-radius: var(--radius-base);
+            transition: all var(--duration-fast) var(--ease-standard);
+        }
+
+        .modal__close:hover {
+            background: var(--color-secondary);
+            color: var(--color-text);
+        }
+
+        .modal__body {
+            padding: var(--space-20);
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .search-section {
+            margin-bottom: var(--space-20);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--space-16);
+        }
+
+        .course-card {
+            padding: var(--space-20);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-standard);
+            border: 1px solid var(--color-border);
+            background: var(--color-bg-1);
+        }
+
+        .course-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: var(--color-bg-2);
+        }
+
+        .course-card h4 {
+            margin: 0 0 var(--space-8) 0;
+            color: var(--color-text);
+        }
+
+        .course-card p {
+            margin: 0;
+            color: var(--color-text-secondary);
+            font-size: var(--font-size-sm);
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 100px;
+            right: var(--space-20);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+        }
+
+        .toast {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-base);
+            padding: var(--space-12) var(--space-16);
+            box-shadow: var(--shadow-lg);
+            min-width: 300px;
+            display: flex;
+            align-items: center;
+            gap: var(--space-12);
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--color-success);
+            background: var(--color-bg-3);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--color-error);
+            background: var(--color-bg-4);
+        }
+
+        .toast.info {
+            border-left: 4px solid var(--color-info);
+            background: var(--color-bg-1);
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--color-border);
+            border-radius: 50%;
+            border-top-color: var(--color-primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 250px 1fr;
+            }
+
+            .notebook-panel {
+                position: fixed;
+                right: -350px;
+                top: 80px;
+                height: calc(100vh - 80px);
+                z-index: 200;
+                transition: right var(--duration-normal) var(--ease-standard);
+                width: 350px;
+            }
+
+            .notebook-panel.active {
+                right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                top: 80px;
+                height: calc(100vh - 80px);
+                z-index: 150;
+                transition: left var(--duration-normal) var(--ease-standard);
+                width: 280px;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .header__content {
+                flex-wrap: wrap;
+                gap: var(--space-12);
+                padding: var(--space-16);
+            }
+
+            .search-bar {
+                order: 3;
+                width: 100%;
+                max-width: none;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: var(--space-16);
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: var(--font-size-xl);
+            cursor: pointer;
+            padding: var(--space-8);
+            border-radius: var(--radius-base);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Floating Notebook Button */
+        .floating-notebook-btn {
+            position: fixed;
+            bottom: var(--space-24);
+            right: var(--space-24);
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-full);
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            border: none;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            font-size: var(--font-size-xl);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--duration-normal) var(--ease-standard);
+            z-index: 100;
+        }
+
+        .floating-notebook-btn:hover {
+            transform: scale(1.1);
+            background: var(--color-primary-hover);
+        }
+
+        @media (max-width: 1024px) {
+            .floating-notebook-btn {
+                display: flex;
+            }
+        }
+
+        /* Focus styles */
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__content">
+            <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="logo">
+                <h2>📚 शिक्षा प्लेटफॉर्म</h2>
+            </div>
+
+            <div class="search-bar">
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="searchInput"
+                    placeholder="वीडियो खोजें..."
+                    onkeyup="if(event.key==='Enter') searchVideos()"
+                />
+                <button class="btn btn--primary" onclick="searchVideos()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <div class="header__actions">
+                <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <button class="btn btn--outline" onclick="showCourseModal()">
+                    कोर्स चुनें
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar__header">
+                <h4 id="selectedCourseName">कोर्स चुनें</h4>
+            </div>
+
+            <nav class="nav-section">
+                <h5>प्लेलिस्ट</h5>
+                <ul class="nav-list">
+                    <li><a href="#" onclick="showAllVideos()"><i class="fas fa-play-circle"></i> सभी वीडियो</a></li>
+                    <li><a href="#" onclick="showLikedVideos()"><i class="fas fa-heart"></i> पसंदीदा</a></li>
+                    <li><a href="#" onclick="showRecentVideos()"><i class="fas fa-history"></i> हाल में देखे</a></li>
+                    <li><a href="#" onclick="showWatchLaterVideos()"><i class="fas fa-clock"></i> बाद में देखें</a></li>
+                </ul>
+            </nav>
+
+            <nav class="nav-section">
+                <h5>कोर्स सामग्री</h5>
+                <ul class="nav-list" id="courseNav">
+                    <!-- Course navigation will be populated here -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Welcome Section -->
+            <div class="welcome-section" id="welcomeSection">
+                <div class="welcome-content">
+                    <h1>उच्च शिक्षा प्लेटफॉर्म में आपका स्वागत है</h1>
+                    <p>अपनी पढ़ाई शुरू करने के लिए "कोर्स चुनें" बटन पर क्लिक करें</p>
+                    <button class="btn btn--primary" onclick="showCourseModal()">
+                        <i class="fas fa-graduation-cap"></i> शुरू करें
+                    </button>
+                </div>
+            </div>
+
+            <!-- Video Section -->
+            <div class="video-section hidden" id="videoSection">
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    
+                    <div class="video-controls">
+                        <div class="controls-left">
+                            <button class="control-btn" onclick="previousVideo()" title="पिछला वीडियो">
+                                <i class="fas fa-step-backward"></i>
+                            </button>
+                            <button class="control-btn" onclick="nextVideo()" title="अगला वीडियो">
+                                <i class="fas fa-step-forward"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="video-time" id="videoTime">00:00</div>
+                        
+                        <div class="controls-right">
+                            <select class="speed-selector" onchange="changeSpeed()" id="speedSelector">
+                                <option value="0.5">0.5x</option>
+                                <option value="1" selected>1x</option>
+                                <option value="1.25">1.25x</option>
+                                <option value="1.5">1.5x</option>
+                                <option value="2">2x</option>
+                            </select>
+                            <button class="control-btn" onclick="toggleFullscreen()" title="फुलस्क्रीन">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="video-info">
+                        <h3 id="videoTitle">वीडियो चुनें</h3>
+                        <div class="video-actions">
+                            <button class="btn btn--outline" onclick="toggleLike()" id="likeBtn">
+                                <i class="far fa-heart"></i> पसंद करें
+                            </button>
+                            <button class="btn btn--outline" onclick="addToWatchLater()">
+                                <i class="fas fa-clock"></i> बाद में देखें
+                            </button>
+                            <button class="btn btn--outline" onclick="downloadVideo()" disabled>
+                                <i class="fas fa-download"></i> डाउनलोड
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Videos Grid Section -->
+            <div class="videos-grid-section hidden" id="videosGridSection">
+                <div class="section-header">
+                    <h3 id="sectionTitle">सभी वीडियो</h3>
+                    <div class="view-options">
+                        <button class="btn btn--sm active" onclick="setGridView()">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="btn btn--sm" onclick="setListView()">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="videos-grid" id="videosGrid">
+                    <!-- Videos will be populated here -->
+                </div>
+            </div>
+        </main>
+
+        <!-- Notebook Panel -->
+        <aside class="notebook-panel" id="notebookPanel">
+            <div class="notebook-header">
+                <h4><i class="fas fa-book"></i> नोटबुक</h4>
+                <div class="notebook-actions">
+                    <button class="btn btn--outline btn--sm" onclick="toggleNotebook()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="notebook-content">
+                <div class="note-toolbar">
+                    <input type="text" class="form-control" id="noteTitle" placeholder="नोट का शीर्षक">
+                    <select class="form-control" id="noteSubject">
+                        <option value="">विषय चुनें</option>
+                    </select>
+                </div>
+
+                <div class="note-editor">
+                    <div class="editor-toolbar">
+                        <button onclick="formatText('bold')" title="Bold">B</button>
+                        <button onclick="formatText('italic')" title="Italic">I</button>
+                        <button onclick="formatText('underline')" title="Underline">U</button>
+                    </div>
+                    <textarea 
+                        class="editor-content" 
+                        id="noteEditor"
+                        placeholder="यहाँ अपना नोट लिखें..."
+                    ></textarea>
+                </div>
+
+                <div class="voice-status hidden" id="voiceStatus">
+                    <i class="fas fa-microphone"></i>
+                    <span>आवाज़ रिकॉर्ड हो रही है...</span>
+                </div>
+
+                <div style="display: flex; gap: var(--space-8); margin-top: var(--space-16);">
+                    <button class="btn btn--outline btn--sm" onclick="startVoiceNote()" id="voiceBtn">
+                        <i class="fas fa-microphone" id="voiceIcon"></i>
+                    </button>
+                    <button class="btn btn--primary btn--sm" onclick="saveNote()">
+                        <i class="fas fa-save"></i> सहेजें
+                    </button>
+                </div>
+
+                <div class="saved-notes">
+                    <h5>सहेजे गए नोट्स</h5>
+                    <div class="notes-list" id="notesList">
+                        <!-- Saved notes will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Floating Notebook Button (for mobile) -->
+    <button class="floating-notebook-btn" onclick="toggleNotebook()">
+        <i class="fas fa-book"></i>
+    </button>
+
+    <!-- Course Selection Modal -->
+    <div class="modal hidden" id="courseModal">
+        <div class="modal__overlay"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3>अपना कोर्स चुनें</h3>
+                <button class="modal__close" onclick="hideCourseModal()">&times;</button>
+            </div>
+            <div class="modal__body">
+                <div class="search-section">
+                    <input type="text" class="form-control" id="courseSearch" placeholder="कोर्स खोजें..." oninput="filterCourses()">
+                </div>
+                <div class="courses-grid" id="coursesGrid">
+                    <!-- Courses will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        class StudyPlatform {
+            constructor() {
+                // Comprehensive course data for different programs
+                this.courseData = {
+                    "btech-cse": {
+                        name: "B.Tech Computer Science",
+                        structure: {
+                            "Cybersecurity": {
+                                "Oneshots HINDI": {
+                                    "Introduction": [
+                                        {"id": "1", "title": "Introduction", "duration": "45:30", "iframe": "https://youtu.be/VBejkJSsHZ0?si=KdM82O_MzK0Hufry"},
+                                        {"id": "2", "title": "Limits & Continuity", "duration": "38:20", "iframe": "https://youtu.be/e-G0_jplhW8?si=Ra_ag6loao_-Y2sZ"},
+                                        {"id": "3", "title": "Derivatives", "duration": "42:15", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Physics I": [
+                                        {"id": "4", "title": "Mechanics", "duration": "50:10", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "5", "title": "Waves", "duration": "35:45", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Chemistry": [
+                                        {"id": "6", "title": "Atomic Structure", "duration": "40:30", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "7", "title": "Chemical Bonding", "duration": "48:20", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Programming": [
+                                        {"id": "8", "title": "C Basics", "duration": "55:15", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "9", "title": "Variables & Data Types", "duration": "32:40", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                },
+                                "Semester 2": {
+                                    "Mathematics II": [
+                                        {"id": "10", "title": "Linear Algebra", "duration": "47:25", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "11", "title": "Matrices", "duration": "41:15", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Physics II": [
+                                        {"id": "12", "title": "Thermodynamics", "duration": "52:30", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                }
+                            },
+                            "Network Security": {
+                                "Semester 3": {
+                                    "Data Structures": [
+                                        {"id": "13", "title": "Arrays", "duration": "43:20", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "14", "title": "Linked Lists", "duration": "51:10", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "15", "title": "Stacks", "duration": "38:45", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Digital Logic": [
+                                        {"id": "16", "title": "Boolean Algebra", "duration": "44:30", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                },
+                                "Semester 4": {
+                                    "Algorithms": [
+                                        {"id": "17", "title": "Sorting Algorithms", "duration": "49:15", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                }
+                            },
+                            "3rd Year": {
+                                "Semester 5": {
+                                    "Operating Systems": [
+                                        {"id": "18", "title": "Process Management", "duration": "56:20", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "bba": {
+                        name: "BBA (Bachelor of Business Administration)",
+                        structure: {
+                            "1st Year": {
+                                "Semester 1": {
+                                    "Principles of Management": [
+                                        {"id": "101", "title": "Introduction to Management", "duration": "50:30", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "102", "title": "Planning Process", "duration": "45:20", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "103", "title": "Organizing", "duration": "42:15", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Business Economics": [
+                                        {"id": "104", "title": "Demand & Supply", "duration": "48:10", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "105", "title": "Market Structures", "duration": "52:45", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Financial Accounting": [
+                                        {"id": "106", "title": "Basic Accounting Concepts", "duration": "44:30", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "107", "title": "Journal & Ledger", "duration": "51:20", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                },
+                                "Semester 2": {
+                                    "Business Communication": [
+                                        {"id": "108", "title": "Effective Communication", "duration": "40:25", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "109", "title": "Business Writing", "duration": "38:15", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Business Environment": [
+                                        {"id": "110", "title": "Economic Environment", "duration": "46:30", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                }
+                            },
+                            "2nd Year": {
+                                "Semester 3": {
+                                    "Marketing Management": [
+                                        {"id": "111", "title": "Marketing Mix", "duration": "49:20", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "112", "title": "Consumer Behavior", "duration": "43:10", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Human Resource Management": [
+                                        {"id": "113", "title": "Recruitment & Selection", "duration": "47:45", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "bca": {
+                        name: "BCA (Bachelor of Computer Applications)",
+                        structure: {
+                            "1st Year": {
+                                "Semester 1": {
+                                    "Computer Fundamentals": [
+                                        {"id": "201", "title": "Introduction to Computers", "duration": "42:30", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "202", "title": "Computer Hardware", "duration": "38:20", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "203", "title": "Computer Software", "duration": "45:15", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Programming in C": [
+                                        {"id": "204", "title": "C Programming Basics", "duration": "55:10", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "205", "title": "Control Structures", "duration": "48:45", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Digital Electronics": [
+                                        {"id": "206", "title": "Number Systems", "duration": "40:30", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "207", "title": "Logic Gates", "duration": "44:20", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                },
+                                "Semester 2": {
+                                    "Object Oriented Programming": [
+                                        {"id": "208", "title": "OOP Concepts", "duration": "52:25", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "209", "title": "Classes & Objects", "duration": "47:15", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Database Management": [
+                                        {"id": "210", "title": "Database Concepts", "duration": "49:30", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                }
+                            },
+                            "2nd Year": {
+                                "Semester 3": {
+                                    "Data Structures": [
+                                        {"id": "211", "title": "Arrays & Strings", "duration": "46:20", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "212", "title": "Linked Lists", "duration": "51:10", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Web Development": [
+                                        {"id": "213", "title": "HTML Basics", "duration": "39:45", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "mba": {
+                        name: "MBA (Master of Business Administration)",
+                        structure: {
+                            "1st Year": {
+                                "Semester 1": {
+                                    "Organizational Behavior": [
+                                        {"id": "301", "title": "Individual Behavior", "duration": "48:30", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "302", "title": "Group Dynamics", "duration": "44:20", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "303", "title": "Leadership", "duration": "52:15", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Financial Management": [
+                                        {"id": "304", "title": "Time Value of Money", "duration": "46:10", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "305", "title": "Capital Budgeting", "duration": "54:45", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "Strategic Management": [
+                                        {"id": "306", "title": "Strategy Formulation", "duration": "49:30", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "307", "title": "Competitive Analysis", "duration": "47:20", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                },
+                                "Semester 2": {
+                                    "Operations Management": [
+                                        {"id": "308", "title": "Supply Chain Management", "duration": "51:25", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "309", "title": "Quality Management", "duration": "43:15", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ],
+                                    "International Business": [
+                                        {"id": "310", "title": "Global Markets", "duration": "45:30", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                }
+                            },
+                            "2nd Year": {
+                                "Semester 3": {
+                                    "Project Management": [
+                                        {"id": "311", "title": "Project Planning", "duration": "48:20", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"},
+                                        {"id": "312", "title": "Risk Management", "duration": "46:10", "iframe": "https://www.youtube.com/embed/WUvTyaaNkzM"}
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                };
+
+                this.currentCourse = null;
+                this.currentCourseId = null;
+                this.currentVideo = null;
+                this.currentVideoIndex = 0;
+                this.currentPlaylist = [];
+                this.allVideos = [];
+                this.likedVideos = [];
+                this.recentVideos = [];
+                this.watchLaterVideos = [];
+                this.savedNotes = [];
+                this.isVoiceRecording = false;
+                this.isDarkTheme = false;
+                this.recognition = null;
+
+                this.init();
+            }
+
+            init() {
+                try {
+                    this.setupSpeechRecognition();
+                    this.loadUserData();
+                    this.populateCourses();
+                    this.setupEventListeners();
+                    console.log('Study Platform initialized successfully');
+                } catch (error) {
+                    console.error('Error initializing platform:', error);
+                    this.showToast('प्लेटफॉर्म लोड करने में त्रुटि', 'error');
+                }
+            }
+
+            setupEventListeners() {
+                // Modal overlay clicks
+                document.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('modal__overlay')) {
+                        this.hideCourseModal();
+                    }
+                });
+
+                // Auto-save notes
+                const noteEditor = document.getElementById('noteEditor');
+                if (noteEditor) {
+                    noteEditor.addEventListener('input', () => {
+                        this.autoSaveNote();
+                    });
+                }
+            }
+
+            setupSpeechRecognition() {
+                if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    this.recognition = new SpeechRecognition();
+                    this.recognition.continuous = true;
+                    this.recognition.interimResults = true;
+                    this.recognition.lang = 'hi-IN';
+
+                    this.recognition.onresult = (event) => {
+                        let finalTranscript = '';
+                        for (let i = event.resultIndex; i < event.results.length; i++) {
+                            const transcript = event.results[i][0].transcript;
+                            if (event.results[i].isFinal) {
+                                finalTranscript += transcript;
+                            }
+                        }
+
+                        const editor = document.getElementById('noteEditor');
+                        if (finalTranscript && editor) {
+                            editor.value += finalTranscript + ' ';
+                        }
+                    };
+
+                    this.recognition.onerror = (event) => {
+                        this.showToast('वॉइस रिकॉर्डिंग में त्रुटि: ' + event.error, 'error');
+                        this.stopVoiceRecording();
+                    };
+
+                    this.recognition.onend = () => {
+                        this.stopVoiceRecording();
+                    };
+                }
+            }
+
+            populateCourses() {
+                const grid = document.getElementById('coursesGrid');
+                grid.innerHTML = '';
+
+                Object.keys(this.courseData).forEach(courseId => {
+                    const course = this.courseData[courseId];
+                    const courseCard = document.createElement('div');
+                    courseCard.className = 'course-card';
+                    courseCard.innerHTML = `
+                        <h4>${course.name}</h4>
+                        <p>${this.getTotalYears(course)} वर्ष • ${this.getTotalSubjects(course)} विषय</p>
+                    `;
+                    courseCard.addEventListener('click', () => {
+                        this.selectCourse(courseId, course);
+                    });
+                    grid.appendChild(courseCard);
+                });
+            }
+
+            getTotalYears(course) {
+                return Object.keys(course.structure).length;
+            }
+
+            getTotalSubjects(course) {
+                let total = 0;
+                Object.keys(course.structure).forEach(year => {
+                    Object.keys(course.structure[year]).forEach(semester => {
+                        total += Object.keys(course.structure[year][semester]).length;
+                    });
+                });
+                return total;
+            }
+
+            selectCourse(courseId, course) {
+                this.currentCourse = course;
+                this.currentCourseId = courseId;
+                this.saveUserData();
+                
+                document.getElementById('selectedCourseName').textContent = course.name;
+                this.setupCourseNavigation();
+                this.flattenAllVideos();
+                this.populateNoteSubjects();
+                this.hideCourseModal();
+                this.hideWelcomeSection();
+                this.showAllVideos();
+                this.showToast(`${course.name} सफलतापूर्वक चुना गया!`, 'success');
+            }
+
+            setupCourseNavigation() {
+                if (!this.currentCourse) return;
+
+                const courseNav = document.getElementById('courseNav');
+                courseNav.innerHTML = '';
+                const structure = this.currentCourse.structure;
+
+                Object.keys(structure).forEach(year => {
+                    const yearItem = document.createElement('li');
+                    yearItem.className = 'year-item';
+                    
+                    const yearLink = document.createElement('a');
+                    yearLink.href = '#';
+                    yearLink.innerHTML = `<i class="fas fa-calendar-alt"></i> ${year}`;
+                    yearLink.onclick = (e) => {
+                        e.preventDefault();
+                        this.toggleYearExpansion(yearItem);
+                    };
+                    yearItem.appendChild(yearLink);
+
+                    const semesterList = document.createElement('ul');
+                    semesterList.className = 'nav-list semester-list';
+                    semesterList.style.display = 'none';
+
+                    Object.keys(structure[year]).forEach(semester => {
+                        const semesterItem = document.createElement('li');
+                        const semesterLink = document.createElement('a');
+                        semesterLink.href = '#';
+                        semesterLink.innerHTML = `<i class="fas fa-book"></i> ${semester}`;
+                        semesterLink.onclick = (e) => {
+                            e.preventDefault();
+                            this.toggleSemesterExpansion(semesterItem);
+                        };
+                        semesterItem.appendChild(semesterLink);
+
+                        const subjectList = document.createElement('ul');
+                        subjectList.className = 'nav-list subject-list';
+                        subjectList.style.display = 'none';
+
+                        Object.keys(structure[year][semester]).forEach(subject => {
+                            const subjectItem = document.createElement('li');
+                            const subjectLink = document.createElement('a');
+                            subjectLink.href = '#';
+                            subjectLink.innerHTML = `<i class="fas fa-play-circle"></i> ${subject} (${structure[year][semester][subject].length})`;
+                            subjectLink.onclick = (e) => {
+                                e.preventDefault();
+                                this.showSubjectVideos(subject, structure[year][semester][subject]);
+                                this.setActiveNavItem(subjectLink);
+                            };
+                            subjectItem.appendChild(subjectLink);
+                            subjectList.appendChild(subjectItem);
+                        });
+
+                        semesterItem.appendChild(subjectList);
+                        semesterList.appendChild(semesterItem);
+                    });
+
+                    yearItem.appendChild(semesterList);
+                    courseNav.appendChild(yearItem);
+                });
+            }
+
+            toggleYearExpansion(yearItem) {
+                const semesterList = yearItem.querySelector('.semester-list');
+                const isVisible = semesterList.style.display !== 'none';
+                semesterList.style.display = isVisible ? 'none' : 'block';
+            }
+
+            toggleSemesterExpansion(semesterItem) {
+                const subjectList = semesterItem.querySelector('.subject-list');
+                const isVisible = subjectList.style.display !== 'none';
+                subjectList.style.display = isVisible ? 'none' : 'block';
+            }
+
+            setActiveNavItem(activeLink) {
+                document.querySelectorAll('.subject-list a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                activeLink.classList.add('active');
+            }
+
+            flattenAllVideos() {
+                if (!this.currentCourse) return;
+
+                this.allVideos = [];
+                const structure = this.currentCourse.structure;
+                Object.keys(structure).forEach(year => {
+                    Object.keys(structure[year]).forEach(semester => {
+                        Object.keys(structure[year][semester]).forEach(subject => {
+                            this.allVideos.push(...structure[year][semester][subject]);
+                        });
+                    });
+                });
+            }
+
+            populateNoteSubjects() {
+                if (!this.currentCourse) return;
+
+                const noteSubject = document.getElementById('noteSubject');
+                noteSubject.innerHTML = '<option value="">विषय चुनें</option>';
+
+                const structure = this.currentCourse.structure;
+                const subjects = new Set();
+                
+                Object.keys(structure).forEach(year => {
+                    Object.keys(structure[year]).forEach(semester => {
+                        Object.keys(structure[year][semester]).forEach(subject => {
+                            subjects.add(subject);
+                        });
+                    });
+                });
+
+                subjects.forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject;
+                    option.textContent = subject;
+                    noteSubject.appendChild(option);
+                });
+            }
+
+            hideWelcomeSection() {
+                document.getElementById('welcomeSection').classList.add('hidden');
+                document.getElementById('videoSection').classList.remove('hidden');
+                document.getElementById('videosGridSection').classList.remove('hidden');
+            }
+
+            showSubjectVideos(subjectName, videos) {
+                this.currentPlaylist = videos;
+                document.getElementById('sectionTitle').textContent = subjectName;
+                this.displayVideos(videos);
+            }
+
+            showAllVideos() {
+                if (!this.currentCourse) {
+                    this.showToast('पहले कोई कोर्स चुनें', 'warning');
+                    return;
+                }
+                this.currentPlaylist = this.allVideos;
+                document.getElementById('sectionTitle').textContent = 'सभी वीडियो';
+                this.displayVideos(this.allVideos);
+            }
+
+            showLikedVideos() {
+                this.currentPlaylist = this.likedVideos;
+                document.getElementById('sectionTitle').textContent = 'पसंदीदा वीडियो';
+                this.displayVideos(this.likedVideos);
+            }
+
+            showRecentVideos() {
+                this.currentPlaylist = this.recentVideos;
+                document.getElementById('sectionTitle').textContent = 'हाल की वीडियो';
+                this.displayVideos(this.recentVideos);
+            }
+
+            showWatchLaterVideos() {
+                this.currentPlaylist = this.watchLaterVideos;
+                document.getElementById('sectionTitle').textContent = 'बाद में देखने की सूची';
+                this.displayVideos(this.watchLaterVideos);
+            }
+
+            displayVideos(videos) {
+                const grid = document.getElementById('videosGrid');
+                grid.innerHTML = '';
+
+                if (videos.length === 0) {
+                    grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--color-text-secondary);">कोई वीडियो नहीं मिला</div>';
+                    return;
+                }
+
+                videos.forEach((video, index) => {
+                    const videoCard = document.createElement('div');
+                    videoCard.className = 'video-card';
+                    videoCard.innerHTML = `
+                        <div class="video-thumbnail">
+                            📹
+                            <div class="video-duration">${video.duration}</div>
+                        </div>
+                        <div class="video-content">
+                            <h4>${video.title}</h4>
+                            <div class="video-meta">
+                                <span>${video.duration}</span>
+                                <button class="btn btn--outline btn--sm" onclick="platform.addToWatchLater('${video.id}')">
+                                    <i class="fas fa-clock"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    videoCard.addEventListener('click', () => {
+                        this.playVideo(video, index);
+                    });
+                    grid.appendChild(videoCard);
+                });
+            }
+
+            playVideo(video, index) {
+                this.currentVideo = video;
+                this.currentVideoIndex = index;
+                
+                document.getElementById('videoPlayer').src = video.iframe;
+                document.getElementById('videoTitle').textContent = video.title;
+                document.getElementById('videoTime').textContent = video.duration;
+
+                this.addToRecentVideos(video);
+                this.updateLikeButton();
+                this.saveUserData();
+            }
+
+            addToRecentVideos(video) {
+                // Remove if already exists
+                this.recentVideos = this.recentVideos.filter(v => v.id !== video.id);
+                // Add to beginning
+                this.recentVideos.unshift(video);
+                // Keep only last 20
+                if (this.recentVideos.length > 20) {
+                    this.recentVideos = this.recentVideos.slice(0, 20);
+                }
+            }
+
+            addToWatchLater(videoId) {
+                const video = this.allVideos.find(v => v.id === videoId);
+                if (video && !this.watchLaterVideos.some(v => v.id === videoId)) {
+                    this.watchLaterVideos.push(video);
+                    this.saveUserData();
+                    this.showToast('बाद में देखने की सूची में जोड़ा गया', 'success');
+                }
+            }
+
+            updateLikeButton() {
+                if (!this.currentVideo) return;
+                
+                const likeBtn = document.getElementById('likeBtn');
+                const isLiked = this.likedVideos.some(v => v.id === this.currentVideo.id);
+                
+                if (isLiked) {
+                    likeBtn.innerHTML = '<i class="fas fa-heart"></i> पसंद किया गया';
+                    likeBtn.classList.add('btn--primary');
+                    likeBtn.classList.remove('btn--outline');
+                } else {
+                    likeBtn.innerHTML = '<i class="far fa-heart"></i> पसंद करें';
+                    likeBtn.classList.add('btn--outline');
+                    likeBtn.classList.remove('btn--primary');
+                }
+            }
+
+            autoSaveNote() {
+                const title = document.getElementById('noteTitle').value;
+                const content = document.getElementById('noteEditor').value;
+                const subject = document.getElementById('noteSubject').value;
+                
+                if (title || content) {
+                    const tempNote = {
+                        title: title || 'अस्थायी नोट',
+                        content: content,
+                        subject: subject,
+                        timestamp: Date.now()
+                    };
+                    sessionStorage.setItem('tempNote', JSON.stringify(tempNote));
+                }
+            }
+
+            displaySavedNotes() {
+                const notesList = document.getElementById('notesList');
+                notesList.innerHTML = '';
+
+                this.savedNotes.forEach(note => {
+                    const noteItem = document.createElement('div');
+                    noteItem.className = 'note-item';
+                    const contentPreview = note.content.length > 50 ? 
+                        note.content.substring(0, 50) + '...' : 
+                        note.content;
+                    
+                    noteItem.innerHTML = `
+                        <h6>${note.title}</h6>
+                        <p>${contentPreview}</p>
+                        <small>${new Date(note.timestamp).toLocaleDateString('hi-IN')}</small>
+                    `;
+                    noteItem.onclick = () => this.loadNote(note);
+                    notesList.appendChild(noteItem);
+                });
+            }
+
+            loadNote(note) {
+                document.getElementById('noteTitle').value = note.title;
+                document.getElementById('noteSubject').value = note.subject || '';
+                document.getElementById('noteEditor').value = note.content;
+            }
+
+            saveUserData() {
+                try {
+                    const data = {
+                        currentCourseId: this.currentCourseId,
+                        likedVideos: this.likedVideos,
+                        recentVideos: this.recentVideos,
+                        watchLaterVideos: this.watchLaterVideos,
+                        savedNotes: this.savedNotes,
+                        isDarkTheme: this.isDarkTheme
+                    };
+                    localStorage.setItem('studyPlatformData', JSON.stringify(data));
+                } catch (error) {
+                    console.error('Error saving user data:', error);
+                }
+            }
+
+            loadUserData() {
+                try {
+                    const data = JSON.parse(localStorage.getItem('studyPlatformData')) || {};
+                    
+                    this.likedVideos = data.likedVideos || [];
+                    this.recentVideos = data.recentVideos || [];
+                    this.watchLaterVideos = data.watchLaterVideos || [];
+                    this.savedNotes = data.savedNotes || [];
+                    this.isDarkTheme = data.isDarkTheme || false;
+
+                    if (data.currentCourseId && this.courseData[data.currentCourseId]) {
+                        this.selectCourse(data.currentCourseId, this.courseData[data.currentCourseId]);
+                    }
+
+                    if (this.isDarkTheme) {
+                        document.documentElement.setAttribute('data-color-scheme', 'dark');
+                        document.getElementById('themeIcon').className = 'fas fa-sun';
+                    }
+
+                    this.displaySavedNotes();
+
+                    // Load temp note if exists
+                    const tempNote = JSON.parse(sessionStorage.getItem('tempNote') || 'null');
+                    if (tempNote) {
+                        document.getElementById('noteTitle').value = tempNote.title || '';
+                        document.getElementById('noteSubject').value = tempNote.subject || '';
+                        document.getElementById('noteEditor').value = tempNote.content || '';
+                    }
+                } catch (error) {
+                    console.error('Error loading user data:', error);
+                }
+            }
+
+            showToast(message, type = 'info') {
+                const toastContainer = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+
+                const icon = type === 'success' ? 'check-circle' : 
+                           type === 'error' ? 'exclamation-circle' : 
+                           type === 'warning' ? 'exclamation-triangle' : 'info-circle';
+
+                toast.innerHTML = `
+                    <i class="fas fa-${icon}"></i>
+                    <span>${message}</span>
+                `;
+
+                toastContainer.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.remove();
+                }, 5000);
+            }
+
+            hideCourseModal() {
+                document.getElementById('courseModal').classList.add('hidden');
+            }
+
+            stopVoiceRecording() {
+                this.isVoiceRecording = false;
+                document.getElementById('voiceIcon').className = 'fas fa-microphone';
+                document.getElementById('voiceStatus').classList.add('hidden');
+            }
+        }
+
+        // Global functions
+        let platform;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            platform = new StudyPlatform();
+        });
+
+        function showCourseModal() {
+            document.getElementById('courseModal').classList.remove('hidden');
+        }
+
+        function hideCourseModal() {
+            platform.hideCourseModal();
+        }
+
+        function filterCourses() {
+            const query = document.getElementById('courseSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.course-card');
+            cards.forEach(card => {
+                const title = card.querySelector('h4').textContent.toLowerCase();
+                card.style.display = title.includes(query) ? 'block' : 'none';
+            });
+        }
+
+        function searchVideos() {
+            if (!platform.currentCourse) {
+                platform.showToast('पहले कोई कोर्स चुनें', 'warning');
+                return;
+            }
+
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            if (!query) {
+                platform.showAllVideos();
+                return;
+            }
+
+            const filtered = platform.allVideos.filter(video =>
+                video.title.toLowerCase().includes(query)
+            );
+
+            platform.currentPlaylist = filtered;
+            document.getElementById('sectionTitle').textContent = `खोज परिणाम: "${query}"`;
+            platform.displayVideos(filtered);
+
+            if (filtered.length === 0) {
+                platform.showToast('कोई वीडियो नहीं मिला', 'info');
+            }
+        }
+
+        function toggleTheme() {
+            platform.isDarkTheme = !platform.isDarkTheme;
+            const theme = platform.isDarkTheme ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-color-scheme', theme);
+            document.getElementById('themeIcon').className = platform.isDarkTheme ? 'fas fa-sun' : 'fas fa-moon';
+            platform.saveUserData();
+            platform.showToast(`${platform.isDarkTheme ? 'डार्क' : 'लाइट'} थीम सक्रिय`, 'success');
+        }
+
+        function toggleLike() {
+            if (!platform.currentVideo) {
+                platform.showToast('पहले कोई वीडियो चुनें', 'warning');
+                return;
+            }
+
+            const index = platform.likedVideos.findIndex(v => v.id === platform.currentVideo.id);
+            if (index > -1) {
+                platform.likedVideos.splice(index, 1);
+                platform.showToast('पसंदीदा से हटाया गया', 'info');
+            } else {
+                platform.likedVideos.push(platform.currentVideo);
+                platform.showToast('पसंदीदा में जोड़ा गया', 'success');
+            }
+
+            platform.updateLikeButton();
+            platform.saveUserData();
+        }
+
+        function addToWatchLater() {
+            if (!platform.currentVideo) {
+                platform.showToast('पहले कोई वीडियो चुनें', 'warning');
+                return;
+            }
+
+            if (!platform.watchLaterVideos.some(v => v.id === platform.currentVideo.id)) {
+                platform.watchLaterVideos.push(platform.currentVideo);
+                platform.saveUserData();
+                platform.showToast('बाद में देखने की सूची में जोड़ा गया', 'success');
+            } else {
+                platform.showToast('यह वीडियो पहले से सूची में है', 'info');
+            }
+        }
+
+        function previousVideo() {
+            if (platform.currentVideoIndex > 0) {
+                platform.playVideo(platform.currentPlaylist[platform.currentVideoIndex - 1], platform.currentVideoIndex - 1);
+            } else {
+                platform.showToast('यह पहला वीडियो है', 'info');
+            }
+        }
+
+        function nextVideo() {
+            if (platform.currentVideoIndex < platform.currentPlaylist.length - 1) {
+                platform.playVideo(platform.currentPlaylist[platform.currentVideoIndex + 1], platform.currentVideoIndex + 1);
+            } else {
+                platform.showToast('यह आखिरी वीडियो है', 'info');
+            }
+        }
+
+        function changeSpeed() {
+            const speed = document.getElementById('speedSelector').value;
+            platform.showToast(`गति ${speed}x पर सेट की गई`, 'info');
+        }
+
+        function toggleFullscreen() {
+            const videoWrapper = document.querySelector('.video-wrapper');
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                videoWrapper.requestFullscreen().catch(() => {
+                    platform.showToast('फुलस्क्रीन समर्थित नहीं है', 'error');
+                });
+            }
+        }
+
+        function setGridView() {
+            document.getElementById('videosGrid').classList.remove('list-view');
+            document.querySelectorAll('.view-options .btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function setListView() {
+            document.getElementById('videosGrid').classList.add('list-view');
+            document.querySelectorAll('.view-options .btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
+        }
+
+        function toggleNotebook() {
+            document.getElementById('notebookPanel').classList.toggle('active');
+        }
+
+        function startVoiceNote() {
+            if (!platform.recognition) {
+                platform.showToast('वॉइस रिकॉर्डिंग समर्थित नहीं है', 'error');
+                return;
+            }
+
+            if (platform.isVoiceRecording) {
+                platform.recognition.stop();
+                platform.isVoiceRecording = false;
+                document.getElementById('voiceIcon').className = 'fas fa-microphone';
+                document.getElementById('voiceStatus').classList.add('hidden');
+                platform.showToast('वॉइस रिकॉर्डिंग बंद', 'info');
+            } else {
+                platform.recognition.start();
+                platform.isVoiceRecording = true;
+                document.getElementById('voiceIcon').className = 'fas fa-stop';
+                document.getElementById('voiceStatus').classList.remove('hidden');
+                platform.showToast('वॉइस रिकॉर्डिंग शुरू', 'success');
+            }
+        }
+
+        function saveNote() {
+            const title = document.getElementById('noteTitle').value.trim();
+            const subject = document.getElementById('noteSubject').value;
+            const content = document.getElementById('noteEditor').value.trim();
+
+            if (!title || !content) {
+                platform.showToast('शीर्षक और सामग्री दोनों भरें', 'warning');
+                return;
+            }
+
+            const note = {
+                id: Date.now().toString(),
+                title: title,
+                subject: subject,
+                content: content,
+                timestamp: Date.now(),
+                videoTitle: platform.currentVideo ? platform.currentVideo.title : null
+            };
+
+            platform.savedNotes.push(note);
+            platform.saveUserData();
+            platform.displaySavedNotes();
+
+            // Clear form
+            document.getElementById('noteTitle').value = '';
+            document.getElementById('noteEditor').value = '';
+            sessionStorage.removeItem('tempNote');
+
+            platform.showToast('नोट सहेजा गया', 'success');
+        }
+
+        function formatText(command) {
+            const editor = document.getElementById('noteEditor');
+            const start = editor.selectionStart;
+            const end = editor.selectionEnd;
+            const selectedText = editor.value.substring(start, end);
+
+            if (selectedText) {
+                let formattedText = selectedText;
+                switch (command) {
+                    case 'bold':
+                        formattedText = `**${selectedText}**`;
+                        break;
+                    case 'italic':
+                        formattedText = `*${selectedText}*`;
+                        break;
+                    case 'underline':
+                        formattedText = `_${selectedText}_`;
+                        break;
+                }
+
+                editor.value = editor.value.substring(0, start) + formattedText + editor.value.substring(end);
+                editor.focus();
+                editor.setSelectionRange(start, start + formattedText.length);
+            }
+        }
+
+        function showAllVideos() {
+            platform.showAllVideos();
+        }
+
+        function showLikedVideos() {
+            platform.showLikedVideos();
+        }
+
+        function showRecentVideos() {
+            platform.showRecentVideos();
+        }
+
+        function showWatchLaterVideos() {
+            platform.showWatchLaterVideos();
+        }
+
+        function downloadVideo() {
+            platform.showToast('डाउनलोड फीचर जल्द आएगा', 'info');
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                switch (e.key) {
+                    case 's':
+                        e.preventDefault();
+                        saveNote();
+                        break;
+                    case 'f':
+                        e.preventDefault();
+                        document.getElementById('searchInput').focus();
+                        break;
+                }
+            }
+
+            if (platform && platform.currentVideo) {
+                switch (e.key) {
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        previousVideo();
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        nextVideo();
+                        break;
+                    case 'f':
+                        if (!e.ctrlKey && !e.metaKey) {
+                            e.preventDefault();
+                            toggleFullscreen();
+                        }
+                        break;
+                }
+            }
+        });
+
+        // Handle responsive design
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024) {
+                document.getElementById('notebookPanel').classList.remove('active');
+            }
+            if (window.innerWidth > 768) {
+                document.getElementById('sidebar').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

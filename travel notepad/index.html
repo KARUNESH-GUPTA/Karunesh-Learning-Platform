@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoyageLog - Travel Journal & Memory Keeper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main App Container -->
+    <div id="app" class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="logo">✈️ VoyageLog</h2>
+                <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle Sidebar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" data-page="dashboard" class="nav-link active">
+                    <span class="nav-icon">🏠</span>Dashboard
+                </a></li>
+                <li><a href="#" data-page="new-entry" class="nav-link">
+                    <span class="nav-icon">➕</span>New Entry
+                </a></li>
+                <li><a href="#" data-page="entries" class="nav-link">
+                    <span class="nav-icon">📚</span>Entries
+                </a></li>
+                <li><a href="#" data-page="gallery" class="nav-link">
+                    <span class="nav-icon">🖼️</span>Gallery
+                </a></li>
+                <li><a href="#" data-page="themes" class="nav-link">
+                    <span class="nav-icon">🎨</span>Themes
+                </a></li>
+                <li><a href="#" data-page="export" class="nav-link">
+                    <span class="nav-icon">💾</span>Export
+                </a></li>
+                <li><a href="#" data-page="about" class="nav-link">
+                    <span class="nav-icon">ℹ️</span>About
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Bottom Navigation -->
+        <nav class="mobile-nav">
+            <button data-page="dashboard" class="mobile-nav-btn active">🏠</button>
+            <button data-page="new-entry" class="mobile-nav-btn">➕</button>
+            <button data-page="entries" class="mobile-nav-btn">📚</button>
+            <button data-page="gallery" class="mobile-nav-btn">🖼️</button>
+            <button data-page="themes" class="mobile-nav-btn">🎨</button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main id="main-content" class="main-content">
+            <!-- Dashboard Page -->
+            <section id="dashboard-page" class="page active">
+                <header class="page-header">
+                    <h1>Dashboard</h1>
+                    <button id="new-entry-btn" class="btn btn--primary">✨ New Entry</button>
+                </header>
+
+                <!-- Stats Panel -->
+                <div class="stats-panel">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-entries">0</div>
+                        <div class="stat-label">Total Trips</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-photos">0</div>
+                        <div class="stat-label">Photos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="pinned-entries">0</div>
+                        <div class="stat-label">Pinned</div>
+                    </div>
+                </div>
+
+                <!-- Recent Entries -->
+                <div class="section">
+                    <h2>Recent Entries</h2>
+                    <div id="recent-entries" class="entries-grid"></div>
+                </div>
+
+                <!-- Pinned Entries -->
+                <div class="section" id="pinned-section">
+                    <h2>Pinned Memories</h2>
+                    <div id="pinned-entries-grid" class="entries-grid"></div>
+                </div>
+            </section>
+
+            <!-- New Entry Page -->
+            <section id="new-entry-page" class="page">
+                <header class="page-header">
+                    <h1 id="entry-form-title">Create New Entry</h1>
+                    <div class="entry-actions">
+                        <button id="save-entry" class="btn btn--primary">💾 Save</button>
+                        <button id="cancel-entry" class="btn btn--secondary">❌ Cancel</button>
+                    </div>
+                </header>
+
+                <form id="entry-form" class="entry-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="entry-title">Title *</label>
+                            <input type="text" id="entry-title" class="form-control" placeholder="Your travel memory title..." required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="entry-mood">Mood</label>
+                            <select id="entry-mood" class="form-control">
+                                <option value="😊">😊 Happy</option>
+                                <option value="😍">😍 Amazed</option>
+                                <option value="🤩">🤩 Star-struck</option>
+                                <option value="😎">😎 Cool</option>
+                                <option value="🥰">🥰 Loved</option>
+                                <option value="😌">😌 Peaceful</option>
+                                <option value="🤗">🤗 Grateful</option>
+                                <option value="😴">😴 Relaxed</option>
+                                <option value="🏖️">🏖️ Beach Vibes</option>
+                                <option value="🏔️">🏔️ Mountain High</option>
+                                <option value="🏝️">🏝️ Island Life</option>
+                                <option value="✈️">✈️ Adventure</option>
+                                <option value="🗺️">🗺️ Explorer</option>
+                                <option value="📸">📸 Photo Perfect</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="entry-date">Date</label>
+                            <input type="date" id="entry-date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="entry-location">Location</label>
+                            <input type="text" id="entry-location" class="form-control" placeholder="Where was this taken?">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="entry-tags">Tags</label>
+                        <input type="text" id="entry-tags" class="form-control" placeholder="beach, sunset, adventure (comma separated)">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Rich Text Editor</label>
+                        <div class="editor-toolbar">
+                            <button type="button" class="editor-btn" data-command="bold" title="Bold">B</button>
+                            <button type="button" class="editor-btn" data-command="italic" title="Italic">I</button>
+                            <button type="button" class="editor-btn" data-command="insertUnorderedList" title="List">•</button>
+                        </div>
+                        <div id="entry-content" class="editor-content" contenteditable="true" placeholder="Share your travel story..."></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Images</label>
+                        <div class="image-upload-area" id="image-drop-zone">
+                            <p>📷 Drag & drop images here or click to upload</p>
+                            <input type="file" id="image-input" multiple accept="image/*" style="display: none;">
+                        </div>
+                        <div id="image-preview" class="image-preview-grid"></div>
+                    </div>
+                </form>
+
+                <div class="autosave-indicator" id="autosave-indicator">
+                    <span>💾 Auto-saved</span>
+                </div>
+            </section>
+
+            <!-- Entries Page -->
+            <section id="entries-page" class="page">
+                <header class="page-header">
+                    <h1>Travel Entries</h1>
+                    <div class="entries-controls">
+                        <div class="search-controls">
+                            <input type="text" id="entries-search" class="form-control" placeholder="Search entries...">
+                        </div>
+                        <div class="filter-controls">
+                            <select id="entries-filter-tags" class="form-control">
+                                <option value="">All Tags</option>
+                            </select>
+                            <select id="entries-sort" class="form-control">
+                                <option value="newest">Newest First</option>
+                                <option value="oldest">Oldest First</option>
+                                <option value="title">By Title</option>
+                            </select>
+                        </div>
+                        <button id="view-toggle" class="btn btn--secondary">📋 List View</button>
+                    </div>
+                </header>
+
+                <div id="entries-container" class="entries-container">
+                    <div id="entries-list" class="entries-grid"></div>
+                </div>
+            </section>
+
+            <!-- Gallery Page -->
+            <section id="gallery-page" class="page">
+                <header class="page-header">
+                    <h1>Photo Gallery</h1>
+                    <div class="gallery-controls">
+                        <button id="sample-images-btn" class="btn btn--secondary">🎨 Add Sample Images</button>
+                        <button id="gallery-upload-btn" class="btn btn--primary">📷 Upload Photos</button>
+                    </div>
+                </header>
+
+                <div class="gallery-stats">
+                    <p id="gallery-count">0 photos in your collection</p>
+                </div>
+
+                <div id="gallery-grid" class="gallery-masonry"></div>
+
+                <input type="file" id="gallery-file-input" multiple accept="image/*" style="display: none;">
+            </section>
+
+            <!-- Themes Page -->
+            <section id="themes-page" class="page">
+                <header class="page-header">
+                    <h1>Customize Appearance</h1>
+                </header>
+
+                <div class="customization-grid">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Theme</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="theme-selector">
+                                <div class="theme-option" data-theme="light">
+                                    <div class="theme-preview theme-light"></div>
+                                    <span>Light</span>
+                                </div>
+                                <div class="theme-option" data-theme="dark">
+                                    <div class="theme-preview theme-dark"></div>
+                                    <span>Dark</span>
+                                </div>
+                                <div class="theme-option" data-theme="coastal">
+                                    <div class="theme-preview theme-coastal"></div>
+                                    <span>Coastal</span>
+                                </div>
+                                <div class="theme-option" data-theme="mountain">
+                                    <div class="theme-preview theme-mountain"></div>
+                                    <span>Mountain</span>
+                                </div>
+                                <div class="theme-option" data-theme="minimal">
+                                    <div class="theme-preview theme-minimal"></div>
+                                    <span>Minimal</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Typography</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="form-group">
+                                <label class="form-label" for="font-selector">Font Family</label>
+                                <select id="font-selector" class="form-control">
+                                    <option value="Inter">Inter</option>
+                                    <option value="Poppins">Poppins</option>
+                                    <option value="Merriweather">Merriweather</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Accessibility</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="reduced-motion"> Reduced Motion
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="compact-spacing"> Compact Spacing
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Export Page -->
+            <section id="export-page" class="page">
+                <header class="page-header">
+                    <h1>Export & Import</h1>
+                </header>
+
+                <div class="export-grid">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Export Data</h3>
+                        </div>
+                        <div class="card__body">
+                            <p>Backup your travel memories and photos safely.</p>
+                            <div class="export-actions">
+                                <button id="export-json" class="btn btn--primary">📁 Export All Data (JSON)</button>
+                                <button id="export-markdown" class="btn btn--secondary">📄 Export as Markdown</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Import Data</h3>
+                        </div>
+                        <div class="card__body">
+                            <p>Restore your data from a previous backup.</p>
+                            <input type="file" id="import-file" accept=".json" style="display: none;">
+                            <button id="import-data" class="btn btn--outline">📂 Import JSON Data</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__header">
+                            <h3 class="text-error">Danger Zone</h3>
+                        </div>
+                        <div class="card__body">
+                            <p>Clear all data permanently. This cannot be undone.</p>
+                            <button id="clear-all-data" class="btn" style="background: var(--color-error); color: white;">🗑️ Clear All Data</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Page -->
+            <section id="about-page" class="page">
+                <header class="page-header">
+                    <h1>About VoyageLog</h1>
+                </header>
+
+                <div class="about-content">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Developer Profile</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="developer-profile">
+                                <div class="developer-avatar">👨‍💻</div>
+                                <div class="developer-info">
+                                    <h4>Karunesh Gupta</h4>
+                                    <p class="developer-role">B.Tech CSE Student | Aspiring Cybersecurity Expert & Entrepreneur</p>
+                                    <p><strong>College:</strong> Allenhouse Institute of Technology</p>
+                                    <p><strong>Skills:</strong> HTML, CSS, JavaScript, Python, Cybersecurity</p>
+                                    <p><strong>Contact:</strong> <a href="mailto:karunesh.gupta@student.com">karunesh.gupta@student.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>About This Project</h3>
+                        </div>
+                        <div class="card__body">
+                            <p><strong>VoyageLog</strong> is a beautiful, frontend-only travel journal where users can record trips, add photos, and save memories locally. This project demonstrates clean UI design, offline-first data persistence, and image-rich storytelling.</p>
+                            
+                            <p><strong>Motivation:</strong> "Create beautiful software that stores memories securely and looks great on every device."</p>
+                            
+                            <h4>Key Features:</h4>
+                            <ul>
+                                <li>📝 Rich text editor for travel stories</li>
+                                <li>📷 Image upload with compression</li>
+                                <li>🎨 Multiple themes and customization</li>
+                                <li>💾 Local storage with export/import</li>
+                                <li>🔍 Full-text search and filtering</li>
+                                <li>📱 Mobile-responsive design</li>
+                            </ul>
+
+                            <h4>Tech Stack:</h4>
+                            <p>Built with HTML5, CSS3 (with CSS variables), and vanilla JavaScript (ES6+). No backend required - everything runs in your browser!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Entry Modal -->
+        <div id="entry-modal" class="modal hidden">
+            <div class="modal-backdrop" id="modal-backdrop"></div>
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2 id="modal-entry-title">Entry Title</h2>
+                    <div class="modal-actions">
+                        <button id="edit-entry-btn" class="btn btn--secondary">✏️ Edit</button>
+                        <button id="pin-entry-btn" class="btn btn--secondary">📌 Pin</button>
+                        <button id="close-modal" class="modal-close">✕</button>
+                    </div>
+                </header>
+                <div class="modal-body">
+                    <div class="entry-meta">
+                        <span id="modal-entry-date" class="entry-date"></span>
+                        <span id="modal-entry-location" class="entry-location"></span>
+                        <span id="modal-entry-mood" class="entry-mood"></span>
+                    </div>
+                    <div id="modal-entry-tags" class="entry-tags"></div>
+                    <div id="modal-entry-images" class="entry-images-carousel"></div>
+                    <div id="modal-entry-content" class="entry-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Lightbox -->
+        <div id="lightbox" class="lightbox hidden">
+            <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+            <div class="lightbox-content">
+                <img id="lightbox-image" src="" alt="">
+                <div class="lightbox-controls">
+                    <button id="lightbox-prev" class="lightbox-btn">‹</button>
+                    <button id="lightbox-next" class="lightbox-btn">›</button>
+                    <button id="lightbox-close" class="lightbox-close">✕</button>
+                </div>
+                <div class="lightbox-info">
+                    <p id="lightbox-caption"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmation Modal -->
+        <div id="confirm-modal" class="modal hidden">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h3 id="confirm-title">Confirm Action</h3>
+                </header>
+                <div class="modal-body">
+                    <p id="confirm-message">Are you sure?</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="confirm-cancel" class="btn btn--secondary">Cancel</button>
+                    <button id="confirm-ok" class="btn btn--primary">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

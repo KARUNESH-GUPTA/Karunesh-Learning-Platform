@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Aapki Calculator - Mobile Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#21808D">
+    <meta name="description" content="Complete mobile calculator with basic, scientific, programmer and financial calculators">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json,{
+        'name': 'Aapki Calculator',
+        'short_name': 'Calculator',
+        'description': 'Mobile-first responsive calculator',
+        'start_url': '/',
+        'display': 'standalone',
+        'theme_color': '#21808D',
+        'background_color': '#ffffff',
+        'icons': [
+            {'src': 'data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%2321808D\' rx=\'20\'/><text x=\'50\' y=\'65\' font-size=\'50\' text-anchor=\'middle\' fill=\'white\'>🧮</text></svg>', 'sizes': '192x192', 'type': 'image/svg+xml'}
+        ]
+    }">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Mobile Header -->
+        <header class="mobile-header">
+            <div class="header-content">
+                <h1 class="app-title">🧮 Aapki Calculator</h1>
+                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav hidden" id="mobileNav">
+            <div class="nav-overlay" id="navOverlay"></div>
+            <div class="nav-menu">
+                <button class="nav-close" id="navClose">×</button>
+                <div class="nav-items">
+                    <button class="nav-item active" data-calculator="basic">
+                        <span class="nav-icon">🧮</span>
+                        <span class="nav-text">Basic</span>
+                    </button>
+                    <button class="nav-item" data-calculator="scientific">
+                        <span class="nav-icon">🔬</span>
+                        <span class="nav-text">Scientific</span>
+                    </button>
+                    <button class="nav-item" data-calculator="programmer">
+                        <span class="nav-icon">💻</span>
+                        <span class="nav-text">Programmer</span>
+                    </button>
+                    <button class="nav-item" data-calculator="financial">
+                        <span class="nav-icon">💰</span>
+                        <span class="nav-text">Financial</span>
+                    </button>
+                    <button class="nav-item" data-calculator="history">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-text">History</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Basic Calculator -->
+            <section id="basic" class="calculator-section active">
+                <div class="calculator-container">
+                    <div class="display-section">
+                        <div class="display-secondary" id="basicSecondary">0</div>
+                        <div class="display-primary" id="basicDisplay">0</div>
+                    </div>
+                    
+                    <div class="button-grid basic-grid">
+                        <button class="btn btn-function" data-action="clear">C</button>
+                        <button class="btn btn-function" data-action="sign">±</button>
+                        <button class="btn btn-function" data-action="percent">%</button>
+                        <button class="btn btn-operator" data-action="divide">÷</button>
+                        
+                        <button class="btn btn-number" data-number="7">7</button>
+                        <button class="btn btn-number" data-number="8">8</button>
+                        <button class="btn btn-number" data-number="9">9</button>
+                        <button class="btn btn-operator" data-action="multiply">×</button>
+                        
+                        <button class="btn btn-number" data-number="4">4</button>
+                        <button class="btn btn-number" data-number="5">5</button>
+                        <button class="btn btn-number" data-number="6">6</button>
+                        <button class="btn btn-operator" data-action="subtract">−</button>
+                        
+                        <button class="btn btn-number" data-number="1">1</button>
+                        <button class="btn btn-number" data-number="2">2</button>
+                        <button class="btn btn-number" data-number="3">3</button>
+                        <button class="btn btn-operator" data-action="add">+</button>
+                        
+                        <button class="btn btn-number btn-zero" data-number="0">0</button>
+                        <button class="btn btn-function" data-action="decimal">.</button>
+                        <button class="btn btn-equals" data-action="equals">=</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scientific Calculator -->
+            <section id="scientific" class="calculator-section">
+                <div class="calculator-container">
+                    <div class="display-section">
+                        <div class="display-secondary" id="scientificSecondary">0</div>
+                        <div class="display-primary" id="scientificDisplay">0</div>
+                    </div>
+                    
+                    <div class="scientific-controls">
+                        <button class="btn btn-function btn-sm" id="degRadToggle">DEG</button>
+                        <button class="btn btn-function btn-sm" id="shiftToggle">2nd</button>
+                    </div>
+                    
+                    <div class="button-grid scientific-grid">
+                        <button class="btn btn-function" data-action="clear">C</button>
+                        <button class="btn btn-function" data-action="clearEntry">CE</button>
+                        <button class="btn btn-function" data-action="backspace">⌫</button>
+                        <button class="btn btn-operator" data-action="divide">÷</button>
+                        
+                        <button class="btn btn-scientific" data-action="sin">sin</button>
+                        <button class="btn btn-scientific" data-action="cos">cos</button>
+                        <button class="btn btn-scientific" data-action="tan">tan</button>
+                        <button class="btn btn-operator" data-action="multiply">×</button>
+                        
+                        <button class="btn btn-scientific" data-action="log">log</button>
+                        <button class="btn btn-scientific" data-action="ln">ln</button>
+                        <button class="btn btn-scientific" data-action="sqrt">√</button>
+                        <button class="btn btn-operator" data-action="subtract">−</button>
+                        
+                        <button class="btn btn-scientific" data-action="power">x²</button>
+                        <button class="btn btn-scientific" data-action="pi">π</button>
+                        <button class="btn btn-scientific" data-action="e">e</button>
+                        <button class="btn btn-operator" data-action="add">+</button>
+                        
+                        <button class="btn btn-function" data-action="openParen">(</button>
+                        <button class="btn btn-function" data-action="closeParen">)</button>
+                        <button class="btn btn-function" data-action="decimal">.</button>
+                        <button class="btn btn-equals" data-action="equals">=</button>
+                        
+                        <button class="btn btn-number" data-number="7">7</button>
+                        <button class="btn btn-number" data-number="8">8</button>
+                        <button class="btn btn-number" data-number="9">9</button>
+                        <button class="btn btn-number" data-number="0">0</button>
+                        
+                        <button class="btn btn-number" data-number="4">4</button>
+                        <button class="btn btn-number" data-number="5">5</button>
+                        <button class="btn btn-number" data-number="6">6</button>
+                        <button class="btn btn-number" data-number="1">1</button>
+                        
+                        <button class="btn btn-number" data-number="2">2</button>
+                        <button class="btn btn-number" data-number="3">3</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Programmer Calculator -->
+            <section id="programmer" class="calculator-section">
+                <div class="calculator-container">
+                    <div class="display-section">
+                        <div class="display-secondary" id="programmerSecondary">BIN: 0</div>
+                        <div class="display-primary" id="programmerDisplay">0</div>
+                    </div>
+                    
+                    <div class="number-system-tabs">
+                        <button class="tab-btn active" data-base="10">DEC</button>
+                        <button class="tab-btn" data-base="16">HEX</button>
+                        <button class="tab-btn" data-base="8">OCT</button>
+                        <button class="tab-btn" data-base="2">BIN</button>
+                    </div>
+                    
+                    <div class="bit-display" id="bitDisplay">
+                        <div class="bit-group">
+                            <span>0</span><span>0</span><span>0</span><span>0</span>
+                            <span>0</span><span>0</span><span>0</span><span>0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="button-grid programmer-grid">
+                        <button class="btn btn-function" data-action="clear">C</button>
+                        <button class="btn btn-function" data-action="backspace">⌫</button>
+                        <button class="btn btn-operator" data-action="and">AND</button>
+                        <button class="btn btn-operator" data-action="or">OR</button>
+                        
+                        <button class="btn btn-hex disabled" data-number="A">A</button>
+                        <button class="btn btn-hex disabled" data-number="B">B</button>
+                        <button class="btn btn-hex disabled" data-number="C">C</button>
+                        <button class="btn btn-operator" data-action="xor">XOR</button>
+                        
+                        <button class="btn btn-hex disabled" data-number="D">D</button>
+                        <button class="btn btn-hex disabled" data-number="E">E</button>
+                        <button class="btn btn-hex disabled" data-number="F">F</button>
+                        <button class="btn btn-operator" data-action="not">NOT</button>
+                        
+                        <button class="btn btn-number" data-number="7">7</button>
+                        <button class="btn btn-number" data-number="8">8</button>
+                        <button class="btn btn-number" data-number="9">9</button>
+                        <button class="btn btn-operator" data-action="divide">÷</button>
+                        
+                        <button class="btn btn-number" data-number="4">4</button>
+                        <button class="btn btn-number" data-number="5">5</button>
+                        <button class="btn btn-number" data-number="6">6</button>
+                        <button class="btn btn-operator" data-action="multiply">×</button>
+                        
+                        <button class="btn btn-number" data-number="1">1</button>
+                        <button class="btn btn-number" data-number="2">2</button>
+                        <button class="btn btn-number" data-number="3">3</button>
+                        <button class="btn btn-operator" data-action="subtract">−</button>
+                        
+                        <button class="btn btn-number btn-zero" data-number="0">0</button>
+                        <button class="btn btn-operator" data-action="add">+</button>
+                        <button class="btn btn-equals" data-action="equals">=</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Financial Calculator -->
+            <section id="financial" class="calculator-section">
+                <div class="calculator-container">
+                    <div class="financial-form">
+                        <h3>EMI Calculator</h3>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Loan Amount (₹)</label>
+                            <input type="number" id="loanAmount" class="form-control" placeholder="500000" value="500000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Interest Rate (%)</label>
+                            <input type="number" id="interestRate" class="form-control" placeholder="8.5" value="8.5" step="0.1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Loan Tenure (Years)</label>
+                            <input type="number" id="loanTenure" class="form-control" placeholder="20" value="20">
+                        </div>
+                        
+                        <button class="btn btn--primary btn--full-width" id="calculateEMI">Calculate EMI</button>
+                        
+                        <div class="financial-results" id="financialResults">
+                            <div class="result-card">
+                                <div class="result-label">Monthly EMI</div>
+                                <div class="result-value" id="emiAmount">₹0</div>
+                            </div>
+                            
+                            <div class="result-card">
+                                <div class="result-label">Total Interest</div>
+                                <div class="result-value" id="totalInterest">₹0</div>
+                            </div>
+                            
+                            <div class="result-card">
+                                <div class="result-label">Total Amount</div>
+                                <div class="result-value" id="totalAmount">₹0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section id="history" class="calculator-section">
+                <div class="calculator-container">
+                    <div class="history-header">
+                        <h3>Calculation History</h3>
+                        <button class="btn btn--outline" id="clearHistory">Clear All</button>
+                    </div>
+                    
+                    <div class="history-list" id="historyList">
+                        <div class="history-item">
+                            <div class="history-expression">125 + 75</div>
+                            <div class="history-result">= 200</div>
+                            <div class="history-type">Basic</div>
+                        </div>
+                        
+                        <div class="history-item favorite">
+                            <div class="history-expression">sin(30°)</div>
+                            <div class="history-result">= 0.5</div>
+                            <div class="history-type">Scientific</div>
+                            <button class="favorite-btn">⭐</button>
+                        </div>
+                        
+                        <div class="history-item">
+                            <div class="history-expression">1010₂ + 0110₂</div>
+                            <div class="history-result">= 10000₂</div>
+                            <div class="history-type">Programmer</div>
+                        </div>
+                        
+                        <div class="history-item favorite">
+                            <div class="history-expression">EMI ₹500k @8.5%</div>
+                            <div class="history-result">= ₹4,308</div>
+                            <div class="history-type">Financial</div>
+                            <button class="favorite-btn">⭐</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="bottom-nav-item active" data-calculator="basic">
+                <span class="nav-icon">🧮</span>
+                <span class="nav-text">Basic</span>
+            </button>
+            <button class="bottom-nav-item" data-calculator="scientific">
+                <span class="nav-icon">🔬</span>
+                <span class="nav-text">Scientific</span>
+            </button>
+            <button class="bottom-nav-item" data-calculator="programmer">
+                <span class="nav-icon">💻</span>
+                <span class="nav-text">Programmer</span>
+            </button>
+            <button class="bottom-nav-item" data-calculator="financial">
+                <span class="nav-icon">💰</span>
+                <span class="nav-text">Financial</span>
+            </button>
+        </nav>
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="toastContainer"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

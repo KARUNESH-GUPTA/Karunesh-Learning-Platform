@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Analyzer &amp; Keylogger Educational Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-bg: #1f2937;
+            --light-bg: #f9fafb;
+            --text-primary: #374151;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            min-height: 100vh;
+            color: var(--text-primary);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Educational Warning Banner */
+        .warning-banner {
+            background: linear-gradient(45deg, var(--danger-color), #dc2626);
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* Password Analyzer Card */
+        .analyzer-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin: 40px auto;
+            max-width: 600px;
+            transform: translateY(-50px);
+        }
+
+        .card-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Password Input Group */
+        .password-input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .password-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6b7280;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-password:hover {
+            color: var(--primary-color);
+        }
+
+        .character-count {
+            text-align: right;
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        /* Strength Meter */
+        .strength-meter {
+            margin-bottom: 25px;
+        }
+
+        .strength-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .strength-bar-container {
+            background: #e5e7eb;
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        .strength-bar {
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(90deg, var(--danger-color), var(--warning-color), var(--success-color));
+        }
+
+        /* Requirements Checklist */
+        .requirements-checklist {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .requirement-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .requirement-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .requirement-icon.valid {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .requirement-icon.invalid {
+            background: #e5e7eb;
+            color: #6b7280;
+        }
+
+        .requirement-text {
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .requirement-item.valid .requirement-text {
+            color: var(--success-color);
+            font-weight: 500;
+        }
+
+        /* Crack Time Display */
+        .crack-time-display {
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .crack-time-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .crack-time-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .crack-time-subtitle {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        /* Analyze Button */
+        .analyze-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .analyze-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Authentication Buttons */
+        .auth-buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .auth-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 0 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .auth-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .analyzer-card {
+                margin: 20px;
+                padding: 30px 20px;
+                transform: translateY(-20px);
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+
+            .auth-btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 200px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+        }
+
+        .loading.active {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Educational Warning Banner -->
+    <div class="warning-banner">
+        <div class="container">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            <strong>⚠️ EDUCATIONAL PURPOSE ONLY</strong> - This application is designed solely for cybersecurity education and research
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-shield-alt me-2"></i>
+                CyberEdu Platform
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#analyzer">Password Analyzer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showLogin()">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showRegister()">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showDashboard()">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#disclaimer">Disclaimer</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Password Analyzer &amp; Keylogger</h1>
+            <p class="hero-subtitle">Educational Platform for Cybersecurity Learning</p>
+            <div class="auth-buttons">
+                <a href="#" class="auth-btn" onclick="showLogin()">
+                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                </a>
+                <a href="#" class="auth-btn" onclick="showRegister()">
+                    <i class="fas fa-user-plus me-2"></i>Register
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Password Analyzer Section -->
+    <section id="analyzer" class="container">
+        <div class="analyzer-card">
+            <h2 class="card-title">
+                <i class="fas fa-key me-2"></i>
+                Password Strength Analyzer
+            </h2>
+            
+            <!-- Password Input -->
+            <div class="password-input-group">
+                <input type="password" id="passwordInput" class="password-input" placeholder="Enter your password to analyze..." autocomplete="new-password">
+                <button type="button" class="toggle-password" onclick="togglePassword()">
+                    <i class="fas fa-eye" id="toggleIcon"></i>
+                </button>
+            </div>
+            <div class="character-count" id="characterCount">0 characters</div>
+
+            <!-- Strength Meter -->
+            <div class="strength-meter">
+                <div class="strength-label">
+                    <span>Password Strength</span>
+                    <span id="strengthPercentage">0%</span>
+                </div>
+                <div class="strength-bar-container">
+                    <div class="strength-bar" id="strengthBar"></div>
+                </div>
+                <div class="strength-label mt-2">
+                    <span id="strengthText">Enter a password</span>
+                    <span id="strengthEntropy">0 bits</span>
+                </div>
+            </div>
+
+            <!-- Requirements Checklist -->
+            <div class="requirements-checklist">
+                <h5 class="mb-3"><i class="fas fa-list-check me-2"></i>Requirements</h5>
+                <div class="requirement-item" id="req-length">
+                    <div class="requirement-icon invalid">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <span class="requirement-text">At least 8 characters</span>
+                </div>
+                <div class="requirement-item" id="req-uppercase">
+                    <div class="requirement-icon invalid">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <span class="requirement-text">At least one uppercase letter</span>
+                </div>
+                <div class="requirement-item" id="req-lowercase">
+                    <div class="requirement-icon invalid">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <span class="requirement-text">At least one lowercase letter</span>
+                </div>
+                <div class="requirement-item" id="req-number">
+                    <div class="requirement-icon invalid">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <span class="requirement-text">At least one number</span>
+                </div>
+                <div class="requirement-item" id="req-special">
+                    <div class="requirement-icon invalid">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <span class="requirement-text">At least one special character</span>
+                </div>
+            </div>
+
+            <!-- Crack Time Display -->
+            <div class="crack-time-display">
+                <div class="crack-time-title">
+                    <i class="fas fa-clock me-2"></i>
+                    Estimated Crack Time
+                </div>
+                <div class="crack-time-value" id="crackTime">Unknown</div>
+                <div class="crack-time-subtitle" id="crackTimeSubtitle">Enter a password to see estimate</div>
+            </div>
+
+            <!-- Analyze Button -->
+            <button class="analyze-btn" onclick="analyzePassword()">
+                <span class="loading" id="loadingSpinner"></span>
+                <span id="analyzeText">
+                    <i class="fas fa-search me-2"></i>
+                    Analyze Password
+                </span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="loginUsername" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="login()">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">
+                        <i class="fas fa-user-plus me-2"></i>Register
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label for="registerUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="registerUsername" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="registerPassword" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="register()">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Modal -->
+    <div class="modal fade" id="dashboardModal" tabindex="-1" aria-labelledby="dashboardModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dashboardModalLabel">
+                        <i class="fas fa-tachometer-alt me-2"></i>Educational Keylogger Dashboard
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Warning Notice -->
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Educational Simulation Only:</strong> This keylogger demonstration is for learning purposes. Unauthorized monitoring is illegal.
+                    </div>
+
+                    <!-- Statistics Cards -->
+                    <div class="row mb-4">
+                        <div class="col-md-3 mb-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Keystrokes</h5>
+                                    <h3 class="text-primary" id="totalKeystrokes">0</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Active Session</h5>
+                                    <h3 class="text-success" id="sessionStatus">Inactive</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Current App</h5>
+                                    <h3 class="text-info" id="currentApp">Browser</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">Typing Speed</h5>
+                                    <h3 class="text-warning" id="typingSpeed">0 WPM</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-success" id="startLogging" onclick="startKeylogger()">
+                                    <i class="fas fa-play me-2"></i>Start Logging
+                                </button>
+                                <button class="btn btn-danger" id="stopLogging" onclick="stopKeylogger()" disabled>
+                                    <i class="fas fa-stop me-2"></i>Stop Logging
+                                </button>
+                                <button class="btn btn-info" onclick="exportLogs()">
+                                    <i class="fas fa-download me-2"></i>Export
+                                </button>
+                                <button class="btn btn-warning" onclick="clearLogs()">
+                                    <i class="fas fa-trash me-2"></i>Clear
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="logSearch" placeholder="Search logs...">
+                                <button class="btn btn-outline-secondary" onclick="searchLogs()">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Logs Table -->
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Key Pressed</th>
+                                    <th>Application</th>
+                                    <th>Device ID</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logsTableBody">
+                                <tr>
+                                    <td colspan="4" class="text-center text-muted">No logs available. Start logging to see data.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disclaimer Section -->
+    <section id="disclaimer" class="container my-5">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Important Legal &amp; Ethical Notice
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-warning" role="alert">
+                    <h5>⚠️ EDUCATIONAL PURPOSE ONLY</h5>
+                    <p>This application is designed solely for cybersecurity education and research purposes.</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="text-danger">❌ Prohibited Uses:</h5>
+                        <ul>
+                            <li>Unauthorized monitoring of individuals</li>
+                            <li>Corporate espionage or data theft</li>
+                            <li>Violation of privacy laws (GDPR, DPDP Act)</li>
+                            <li>Deployment on production systems without consent</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="text-success">✅ Permitted Uses:</h5>
+                        <ul>
+                            <li>Educational demonstration in controlled environments</li>
+                            <li>Cybersecurity research and learning</li>
+                            <li>Understanding password security concepts</li>
+                            <li>Academic coursework and training</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="alert alert-info mt-4" role="alert">
+                    <h6>📚 Educational Value:</h6>
+                    <p>This platform helps users understand:</p>
+                    <ul class="mb-0">
+                        <li>Password strength analysis and entropy calculation</li>
+                        <li>Keystroke logging techniques and detection methods</li>
+                        <li>Privacy implications of monitoring software</li>
+                        <li>Importance of secure authentication practices</li>
+                    </ul>
+                </div>
+
+                <div class="alert alert-danger mt-4" role="alert">
+                    <h6>⚖️ Legal Compliance:</h6>
+                    <p>Users must comply with all applicable laws including GDPR, CCPA, DPDP Act, and local privacy regulations. Unauthorized keystroke logging is illegal in most jurisdictions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy Policy</a>
+                <a href="#disclaimer" class="footer-link">Legal Disclaimer</a>
+                <a href="#" class="footer-link">Educational Resources</a>
+                <a href="#" class="footer-link">Contact</a>
+            </div>
+            <p>&copy; 2024 CyberEdu Platform. All rights reserved. Educational use only.</p>
+            <p class="small">This platform is designed for cybersecurity education and must not be used for unauthorized monitoring.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Global variables
+        let isLoggedIn = false;
+        let keyloggerActive = false;
+        let keystrokeLogs = [];
+        let totalKeystrokes = 0;
+        let sessionStartTime = null;
+        let typingSpeedBuffer = [];
+        
+        // Common passwords for dictionary check
+        const commonPasswords = [
+            'password', '123456', '12345678', 'qwerty', 'abc123', 'password123',
+            'admin', 'letmein', 'welcome', 'monkey', '1234567890', 'password1'
+        ];
+
+        // Password visibility toggle
+        function togglePassword() {
+            const passwordInput = document.getElementById('passwordInput');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.className = 'fas fa-eye';
+            }
+        }
+
+        // Update character count
+        function updateCharacterCount() {
+            const password = document.getElementById('passwordInput').value;
+            document.getElementById('characterCount').textContent = `${password.length} characters`;
+        }
+
+        // Calculate password strength
+        function calculatePasswordStrength(password) {
+            if (!password) {
+                return {
+                    score: 0,
+                    percentage: 0,
+                    entropy: 0,
+                    level: 'None',
+                    crackTime: 'Unknown',
+                    crackTimeSubtitle: 'Enter a password to see estimate'
+                };
+            }
+
+            let score = 0;
+            let charsetSize = 0;
+            
+            // Length scoring
+            if (password.length >= 8) score += 25;
+            if (password.length >= 12) score += 15;
+            if (password.length >= 16) score += 10;
+            
+            // Character diversity
+            const hasLowercase = /[a-z]/.test(password);
+            const hasUppercase = /[A-Z]/.test(password);
+            const hasNumbers = /[0-9]/.test(password);
+            const hasSpecialChars = /[^a-zA-Z0-9]/.test(password);
+            
+            if (hasLowercase) { score += 15; charsetSize += 26; }
+            if (hasUppercase) { score += 15; charsetSize += 26; }
+            if (hasNumbers) { score += 15; charsetSize += 10; }
+            if (hasSpecialChars) { score += 25; charsetSize += 32; }
+            
+            // Pattern detection penalties
+            const lowerPassword = password.toLowerCase();
+            if (/qwerty|asdf|zxcv/.test(lowerPassword)) score -= 30;
+            if (/(..).*\1/.test(password)) score -= 20; // Repeated patterns
+            if (/123|abc|987|cba/.test(lowerPassword)) score -= 25;
+            if (commonPasswords.includes(lowerPassword)) score -= 40;
+            
+            // Ensure score is between 0-100
+            score = Math.max(0, Math.min(100, score));
+            
+            // Calculate entropy
+            const entropy = password.length * Math.log2(charsetSize || 1);
+            
+            // Determine strength level and color
+            let level, crackTime, crackTimeSubtitle;
+            if (score >= 86) {
+                level = 'Strong';
+                crackTime = 'Centuries';
+                crackTimeSubtitle = 'Excellent password strength';
+            } else if (score >= 66) {
+                level = 'Good';
+                crackTime = 'Years';
+                crackTimeSubtitle = 'Good password strength';
+            } else if (score >= 46) {
+                level = 'Medium';
+                crackTime = 'Months';
+                crackTimeSubtitle = 'Moderate password strength';
+            } else if (score >= 26) {
+                level = 'Fair';
+                crackTime = 'Days';
+                crackTimeSubtitle = 'Fair password strength';
+            } else {
+                level = 'Weak';
+                crackTime = 'Minutes';
+                crackTimeSubtitle = 'Weak password - easily cracked';
+            }
+            
+            return {
+                score,
+                percentage: score,
+                entropy: Math.round(entropy),
+                level,
+                crackTime,
+                crackTimeSubtitle,
+                requirements: {
+                    length: password.length >= 8,
+                    uppercase: hasUppercase,
+                    lowercase: hasLowercase,
+                    number: hasNumbers,
+                    special: hasSpecialChars
+                }
+            };
+        }
+
+        // Update strength meter UI
+        function updateStrengthMeter(strength) {
+            const strengthBar = document.getElementById('strengthBar');
+            const strengthPercentage = document.getElementById('strengthPercentage');
+            const strengthText = document.getElementById('strengthText');
+            const strengthEntropy = document.getElementById('strengthEntropy');
+            const crackTime = document.getElementById('crackTime');
+            const crackTimeSubtitle = document.getElementById('crackTimeSubtitle');
+            
+            // Update progress bar
+            strengthBar.style.width = `${strength.percentage}%`;
+            
+            // Update color based on strength
+            if (strength.percentage >= 86) {
+                strengthBar.style.background = '#10b981'; // Strong - Green
+            } else if (strength.percentage >= 66) {
+                strengthBar.style.background = '#84cc16'; // Good - Light Green
+            } else if (strength.percentage >= 46) {
+                strengthBar.style.background = '#f59e0b'; // Medium - Yellow
+            } else if (strength.percentage >= 26) {
+                strengthBar.style.background = '#f97316'; // Fair - Orange
+            } else {
+                strengthBar.style.background = '#ef4444'; // Weak - Red
+            }
+            
+            // Update text
+            strengthPercentage.textContent = `${strength.percentage}%`;
+            strengthText.textContent = strength.level;
+            strengthEntropy.textContent = `${strength.entropy} bits`;
+            crackTime.textContent = strength.crackTime;
+            crackTimeSubtitle.textContent = strength.crackTimeSubtitle;
+        }
+
+        // Update requirements checklist
+        function updateRequirements(requirements) {
+            const reqItems = ['length', 'uppercase', 'lowercase', 'number', 'special'];
+            
+            reqItems.forEach(req => {
+                const element = document.getElementById(`req-${req}`);
+                const icon = element.querySelector('.requirement-icon');
+                const iconElement = icon.querySelector('i');
+                
+                if (requirements[req]) {
+                    element.classList.add('valid');
+                    icon.classList.remove('invalid');
+                    icon.classList.add('valid');
+                    iconElement.className = 'fas fa-check';
+                } else {
+                    element.classList.remove('valid');
+                    icon.classList.remove('valid');
+                    icon.classList.add('invalid');
+                    iconElement.className = 'fas fa-times';
+                }
+            });
+        }
+
+        // Real-time password analysis
+        let analysisTimeout;
+        function analyzePasswordRealtime() {
+            clearTimeout(analysisTimeout);
+            analysisTimeout = setTimeout(() => {
+                const password = document.getElementById('passwordInput').value;
+                const strength = calculatePasswordStrength(password);
+                
+                updateCharacterCount();
+                updateStrengthMeter(strength);
+                updateRequirements(strength.requirements);
+            }, 100); // Debounce for performance
+        }
+
+        // Manual password analysis (button click)
+        function analyzePassword() {
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const analyzeText = document.getElementById('analyzeText');
+            
+            // Show loading state
+            loadingSpinner.classList.add('active');
+            analyzeText.style.opacity = '0.7';
+            
+            setTimeout(() => {
+                const password = document.getElementById('passwordInput').value;
+                if (!password) {
+                    alert('Please enter a password to analyze.');
+                    loadingSpinner.classList.remove('active');
+                    analyzeText.style.opacity = '1';
+                    return;
+                }
+                
+                const strength = calculatePasswordStrength(password);
+                updateStrengthMeter(strength);
+                updateRequirements(strength.requirements);
+                
+                // Simulate API call for demonstration
+                console.log('Password Analysis Result:', strength);
+                
+                // Hide loading state
+                loadingSpinner.classList.remove('active');
+                analyzeText.style.opacity = '1';
+                
+                // Show detailed analysis alert
+                alert(`Password Analysis Complete!\n\nStrength: ${strength.level} (${strength.percentage}%)\nEntropy: ${strength.entropy} bits\nEstimated Crack Time: ${strength.crackTime}`);
+            }, 1000);
+        }
+
+        // Modal functions
+        function showLogin() {
+            new bootstrap.Modal(document.getElementById('loginModal')).show();
+        }
+
+        function showRegister() {
+            new bootstrap.Modal(document.getElementById('registerModal')).show();
+        }
+
+        function showDashboard() {
+            if (!isLoggedIn) {
+                alert('Please login first to access the dashboard.');
+                showLogin();
+                return;
+            }
+            new bootstrap.Modal(document.getElementById('dashboardModal')).show();
+        }
+
+        // Authentication functions
+        function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!username || !password) {
+                alert('Please enter both username and password.');
+                return;
+            }
+            
+            // Simulate login (in real app, this would be an API call)
+            console.log('Login attempt:', { username, password });
+            
+            // For demo purposes, accept any credentials
+            isLoggedIn = true;
+            alert(`Welcome, ${username}! You are now logged in.`);
+            bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+            
+            // Update navbar (in a real app)
+            updateAuthUI();
+        }
+
+        function register() {
+            const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (!username || !email || !password || !confirmPassword) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+            
+            // Analyze password strength
+            const strength = calculatePasswordStrength(password);
+            if (strength.percentage < 46) {
+                alert('Please choose a stronger password (minimum Medium strength).');
+                return;
+            }
+            
+            // Simulate registration (in real app, this would be an API call)
+            console.log('Registration attempt:', { username, email, password });
+            
+            alert(`Registration successful! Welcome, ${username}!`);
+            bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide();
+            
+            // Auto-login after registration
+            isLoggedIn = true;
+            updateAuthUI();
+        }
+
+        function updateAuthUI() {
+            // In a real application, update the navbar to show logout button, user name, etc.
+            console.log('Auth UI updated. Logged in:', isLoggedIn);
+        }
+
+        // Keylogger functions (Educational simulation)
+        function startKeylogger() {
+            if (!isLoggedIn) {
+                alert('Please login first.');
+                return;
+            }
+            
+            // Show consent dialog
+            const consent = confirm('EDUCATIONAL CONSENT REQUIRED\n\nThis keylogger simulation is for educational purposes only.\n\nBy clicking OK, you consent to demonstrate keystroke logging in this controlled environment.\n\nDo you consent to proceed?');
+            
+            if (!consent) {
+                return;
+            }
+            
+            keyloggerActive = true;
+            sessionStartTime = new Date();
+            totalKeystrokes = 0;
+            
+            document.getElementById('startLogging').disabled = true;
+            document.getElementById('stopLogging').disabled = false;
+            document.getElementById('sessionStatus').textContent = 'Active';
+            document.getElementById('sessionStatus').className = 'text-success';
+            
+            // Add event listeners for educational demonstration
+            document.addEventListener('keydown', logKeystroke);
+            document.addEventListener('click', logClick);
+            
+            console.log('Educational keylogger started');
+        }
+
+        function stopKeylogger() {
+            keyloggerActive = false;
+            
+            document.getElementById('startLogging').disabled = false;
+            document.getElementById('stopLogging').disabled = true;
+            document.getElementById('sessionStatus').textContent = 'Inactive';
+            document.getElementById('sessionStatus').className = 'text-danger';
+            
+            // Remove event listeners
+            document.removeEventListener('keydown', logKeystroke);
+            document.removeEventListener('click', logClick);
+            
+            console.log('Educational keylogger stopped');
+        }
+
+        function logKeystroke(event) {
+            if (!keyloggerActive) return;
+            
+            totalKeystrokes++;
+            
+            const logEntry = {
+                timestamp: new Date().toISOString(),
+                key: event.key,
+                keyCode: event.keyCode,
+                application: 'Browser - Educational Demo',
+                deviceId: 'DEMO-DEVICE-001',
+                type: 'keydown'
+            };
+            
+            keystrokeLogs.push(logEntry);
+            
+            // Update UI
+            document.getElementById('totalKeystrokes').textContent = totalKeystrokes;
+            updateLogsTable();
+            updateTypingSpeed();
+            
+            // Simulate sending to server (in real app)
+            console.log('Keystroke logged:', logEntry);
+        }
+
+        function logClick(event) {
+            if (!keyloggerActive) return;
+            
+            const logEntry = {
+                timestamp: new Date().toISOString(),
+                key: 'MOUSE_CLICK',
+                keyCode: 0,
+                application: 'Browser - Educational Demo',
+                deviceId: 'DEMO-DEVICE-001',
+                type: 'click',
+                coordinates: `${event.clientX}, ${event.clientY}`
+            };
+            
+            keystrokeLogs.push(logEntry);
+            updateLogsTable();
+            
+            console.log('Click logged:', logEntry);
+        }
+
+        function updateLogsTable() {
+            const tbody = document.getElementById('logsTableBody');
+            
+            if (keystrokeLogs.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">No logs available. Start logging to see data.</td></tr>';
+                return;
+            }
+            
+            // Show last 50 entries
+            const recentLogs = keystrokeLogs.slice(-50).reverse();
+            
+            tbody.innerHTML = recentLogs.map(log => `
+                <tr>
+                    <td>${new Date(log.timestamp).toLocaleString()}</td>
+                    <td><code>${log.key}</code></td>
+                    <td>${log.application}</td>
+                    <td>${log.deviceId}</td>
+                </tr>
+            `).join('');
+        }
+
+        function updateTypingSpeed() {
+            if (!sessionStartTime) return;
+            
+            const elapsed = (Date.now() - sessionStartTime.getTime()) / 1000 / 60; // minutes
+            const wpm = Math.round((totalKeystrokes / 5) / elapsed); // rough WPM calculation
+            
+            document.getElementById('typingSpeed').textContent = `${wpm || 0} WPM`;
+        }
+
+        function exportLogs() {
+            if (keystrokeLogs.length === 0) {
+                alert('No logs to export.');
+                return;
+            }
+            
+            const format = prompt('Export format (csv/json):', 'csv');
+            
+            if (format === 'csv') {
+                const csv = 'Timestamp,Key,Application,DeviceID\n' + 
+                    keystrokeLogs.map(log => 
+                        `"${log.timestamp}","${log.key}","${log.application}","${log.deviceId}"`
+                    ).join('\n');
+                
+                downloadFile('keylogger_logs.csv', csv, 'text/csv');
+            } else if (format === 'json') {
+                const json = JSON.stringify(keystrokeLogs, null, 2);
+                downloadFile('keylogger_logs.json', json, 'application/json');
+            } else {
+                alert('Invalid format. Please choose csv or json.');
+            }
+        }
+
+        function downloadFile(filename, content, contentType) {
+            const blob = new Blob([content], { type: contentType });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        function clearLogs() {
+            const confirm = window.confirm('Are you sure you want to clear all logs? This action cannot be undone.');
+            
+            if (confirm) {
+                keystrokeLogs = [];
+                totalKeystrokes = 0;
+                document.getElementById('totalKeystrokes').textContent = '0';
+                updateLogsTable();
+                console.log('Logs cleared');
+            }
+        }
+
+        function searchLogs() {
+            const searchTerm = document.getElementById('logSearch').value.toLowerCase();
+            
+            if (!searchTerm) {
+                updateLogsTable();
+                return;
+            }
+            
+            const filteredLogs = keystrokeLogs.filter(log => 
+                log.key.toLowerCase().includes(searchTerm) ||
+                log.application.toLowerCase().includes(searchTerm) ||
+                log.deviceId.toLowerCase().includes(searchTerm)
+            );
+            
+            const tbody = document.getElementById('logsTableBody');
+            
+            if (filteredLogs.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted">No matching logs found.</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = filteredLogs.slice(-50).reverse().map(log => `
+                <tr>
+                    <td>${new Date(log.timestamp).toLocaleString()}</td>
+                    <td><code>${log.key}</code></td>
+                    <td>${log.application}</td>
+                    <td>${log.deviceId}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add real-time password analysis
+            const passwordInput = document.getElementById('passwordInput');
+            passwordInput.addEventListener('input', analyzePasswordRealtime);
+            passwordInput.addEventListener('keyup', analyzePasswordRealtime);
+            
+            // Add search functionality
+            const searchInput = document.getElementById('logSearch');
+            searchInput.addEventListener('input', searchLogs);
+            
+            console.log('CyberEdu Platform initialized');
+        });
+
+        // Initialize the application
+        console.log('Password Analyzer & Keylogger Educational Platform loaded');
+        console.log('⚠️ Educational use only - Unauthorized monitoring is illegal');
+    </script>
+</body>
+</html>

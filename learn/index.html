@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnHub - Interactive Video Learning Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="logo">
+                    <span class="logo__icon">🎓</span>
+                    <span class="logo__text">LearnHub</span>
+                </div>
+                <nav class="nav">
+                    <button class="nav__btn nav__btn--active" id="dashboardBtn">Dashboard</button>
+                    <button class="nav__btn" id="coursesBtn">Courses</button>
+                    <button class="nav__btn" id="progressBtn">Progress</button>
+                    <button class="nav__btn" id="profileBtn">Profile</button>
+                </nav>
+                <div class="header__actions">
+                    <button class="search-toggle" id="searchToggle">🔍</button>
+                    <button class="theme-toggle" id="themeToggle">🌙</button>
+                </div>
+            </div>
+            <div class="search-bar hidden" id="searchBar">
+                <div class="container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search courses, topics, instructors...">
+                    <button class="search-btn" id="searchBtn">Search</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Dashboard View -->
+        <div id="dashboardView" class="view view--active">
+            <div class="container">
+                <!-- Welcome Section -->
+                <section class="welcome">
+                    <div class="welcome__content">
+                        <div class="welcome__text">
+                            <h1 class="welcome__title">Welcome back, <span id="userName">Alex</span>! 🎉</h1>
+                            <p class="welcome__subtitle">Ready to continue your learning journey?</p>
+                        </div>
+                        <div class="welcome__stats">
+                            <div class="stat-item">
+                                <div class="stat-item__value" id="userLevel">7</div>
+                                <div class="stat-item__label">Level</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-item__value" id="userXP">2450</div>
+                                <div class="stat-item__label">XP</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-item__value" id="userStreak">12</div>
+                                <div class="stat-item__label">🔥 Streak</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Stats -->
+                <section class="quick-stats">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-card__icon">📚</div>
+                            <div class="stat-card__content">
+                                <div class="stat-card__value" id="currentCourses">3</div>
+                                <div class="stat-card__label">Current Courses</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__icon">✅</div>
+                            <div class="stat-card__content">
+                                <div class="stat-card__value" id="completedCourses">8</div>
+                                <div class="stat-card__label">Completed</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__icon">⏰</div>
+                            <div class="stat-card__content">
+                                <div class="stat-card__value" id="totalWatchTime">47h</div>
+                                <div class="stat-card__label">Watch Time</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-card__icon">🏆</div>
+                            <div class="stat-card__content">
+                                <div class="stat-card__value" id="achievementsCount">4</div>
+                                <div class="stat-card__label">Achievements</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Continue Learning -->
+                <section class="continue-learning">
+                    <h2 class="section-title">Continue Learning</h2>
+                    <div class="course-cards" id="continueLearning">
+                        <!-- Current courses will be rendered here -->
+                    </div>
+                </section>
+
+                <!-- Weekly Goal -->
+                <section class="weekly-goal">
+                    <div class="goal-card">
+                        <h3>Weekly Learning Goal</h3>
+                        <div class="goal-progress">
+                            <div class="goal-progress__bar">
+                                <div class="goal-progress__fill" id="weeklyProgress"></div>
+                            </div>
+                            <div class="goal-progress__text">
+                                <span id="goalCompleted">7</span> / <span id="goalTarget">10</span> lessons completed
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Subject Categories -->
+                <section class="subjects">
+                    <h2 class="section-title">Explore Subjects</h2>
+                    <div class="subjects-grid" id="subjectsGrid">
+                        <!-- Subject cards will be rendered here -->
+                    </div>
+                </section>
+
+                <!-- Achievements -->
+                <section class="achievements">
+                    <h2 class="section-title">Recent Achievements</h2>
+                    <div class="achievements-list" id="achievementsList">
+                        <!-- Achievements will be rendered here -->
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Courses View -->
+        <div id="coursesView" class="view">
+            <div class="container">
+                <div class="courses-header">
+                    <h1>All Courses</h1>
+                    <div class="courses-filters">
+                        <select class="form-control" id="subjectFilter">
+                            <option value="">All Subjects</option>
+                        </select>
+                        <select class="form-control" id="levelFilter">
+                            <option value="">All Levels</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="courses-grid" id="coursesGrid">
+                    <!-- All courses will be rendered here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Detail View -->
+        <div id="courseDetailView" class="view">
+            <div class="container">
+                <nav class="breadcrumb">
+                    <button class="breadcrumb__link" id="backToCourses">Courses</button>
+                    <span class="breadcrumb__separator">></span>
+                    <span class="breadcrumb__current" id="currentCourseName"></span>
+                </nav>
+
+                <div class="course-hero">
+                    <div class="course-hero__content">
+                        <h1 class="course-hero__title" id="courseTitle"></h1>
+                        <p class="course-hero__instructor">by <span id="courseInstructor"></span></p>
+                        <div class="course-hero__meta">
+                            <span class="meta-tag" id="courseDuration"></span>
+                            <span class="meta-tag" id="courseLevel"></span>
+                            <div class="rating">
+                                <span class="rating__stars" id="courseRating">★★★★★</span>
+                                <span class="rating__count" id="courseStudents"></span>
+                            </div>
+                        </div>
+                        <button class="btn btn--primary btn--lg" id="startCourseBtn">Start Course</button>
+                    </div>
+                    <div class="course-hero__progress" id="courseProgress" style="display: none;">
+                        <h3>Your Progress</h3>
+                        <div class="progress-bar">
+                            <div class="progress-bar__fill" id="courseProgressBar"></div>
+                        </div>
+                        <p class="progress-text" id="courseProgressText"></p>
+                    </div>
+                </div>
+
+                <div class="course-content">
+                    <div class="course-lessons" id="courseLessons">
+                        <!-- Course lessons will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Player View -->
+        <div id="videoPlayerView" class="view">
+            <div class="video-container">
+                <div class="video-player">
+                    <div class="video-placeholder" id="videoPlaceholder">
+                        <div class="play-button" id="playButton">▶️</div>
+                        <h3>Interactive Video Lesson</h3>
+                        <p id="videoTitle">Loading...</p>
+                    </div>
+                    <div class="video-controls" id="videoControls">
+                        <div class="controls-left">
+                            <button class="control-btn" id="playPauseBtn">⏸️</button>
+                            <span class="time-display">0:00 / 15:30</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="video-progress">
+                                <div class="video-progress__bar" id="videoProgressBar"></div>
+                            </div>
+                        </div>
+                        <div class="controls-right">
+                            <button class="control-btn" id="speedBtn">1x</button>
+                            <button class="control-btn" id="qualityBtn">720p</button>
+                            <button class="control-btn" id="captionsBtn">CC</button>
+                            <button class="control-btn" id="fullscreenBtn">⛶</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-sidebar">
+                    <div class="lesson-info">
+                        <h3 id="lessonTitle">Lesson Title</h3>
+                        <p id="lessonDescription">Lesson description goes here...</p>
+                    </div>
+                    <div class="lesson-actions">
+                        <button class="btn btn--secondary" id="prevLessonBtn">← Previous</button>
+                        <button class="btn btn--primary" id="nextLessonBtn">Next →</button>
+                    </div>
+                    <div class="notes-section">
+                        <h4>Notes</h4>
+                        <textarea class="form-control" id="notesTextarea" placeholder="Take notes here..."></textarea>
+                        <button class="btn btn--outline btn--sm" id="saveNotesBtn">Save Notes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress View -->
+        <div id="progressView" class="view">
+            <div class="container">
+                <h1>Learning Progress</h1>
+                <div class="progress-dashboard">
+                    <div class="progress-overview">
+                        <div class="progress-chart">
+                            <h3>Weekly Activity</h3>
+                            <div style="position: relative; height: 300px;">
+                                <canvas id="progressChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="progress-stats">
+                            <div class="stat-item">
+                                <div class="stat-item__value">15.5</div>
+                                <div class="stat-item__label">Hours This Week</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-item__value">85%</div>
+                                <div class="stat-item__label">Average Score</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-item__value">23</div>
+                                <div class="stat-item__label">Lessons Completed</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="subject-progress" id="subjectProgress">
+                        <!-- Subject progress will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile View -->
+        <div id="profileView" class="view">
+            <div class="container">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="https://via.placeholder.com/100/4F46E5/FFFFFF?text=AJ" alt="Profile" id="profileAvatar">
+                    </div>
+                    <div class="profile-info">
+                        <h1 id="profileName">Alex Johnson</h1>
+                        <p class="profile-level">Level <span id="profileLevel">7</span> Learner</p>
+                        <p class="profile-joined">Member since <span id="profileJoinDate">January 2025</span></p>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <div class="stat-item__value" id="profileXP">2450</div>
+                            <div class="stat-item__label">Total XP</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-item__value" id="profileStreak">12</div>
+                            <div class="stat-item__label">Day Streak</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-content">
+                    <div class="profile-achievements">
+                        <h2>All Achievements</h2>
+                        <div class="achievements-grid" id="allAchievements">
+                            <!-- All achievements will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quiz Modal -->
+    <div class="modal hidden" id="quizModal">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3>Quick Knowledge Check</h3>
+                <button class="modal__close" id="closeQuizModal">×</button>
+            </div>
+            <div class="modal__body">
+                <div class="quiz-question" id="quizQuestion">
+                    <h4 id="questionText">What is the derivative of x²?</h4>
+                    <div class="quiz-options" id="quizOptions">
+                        <label class="quiz-option">
+                            <input type="radio" name="answer" value="a">
+                            <span>2x</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="answer" value="b">
+                            <span>x²</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="answer" value="c">
+                            <span>x</span>
+                        </label>
+                        <label class="quiz-option">
+                            <input type="radio" name="answer" value="d">
+                            <span>2</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="btn btn--primary" id="submitQuizBtn">Submit Answer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast hidden" id="toast">
+        <div class="toast__content" id="toastContent"></div>
+        <button class="toast__close" id="toastClose">×</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

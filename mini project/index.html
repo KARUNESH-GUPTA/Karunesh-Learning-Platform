@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberMastery Hub - Complete Cybersecurity Learning Ecosystem</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Login/Signup Popup Modal -->
+<div id="authModal" class="auth-modal active">
+    <div class="auth-overlay"></div>
+    <div class="auth-container">
+        <div class="auth-header">
+            <div class="auth-logo">
+                <span class="auth-icon">🛡️</span>
+                <h2>CyberMastery Hub</h2>
+            </div>
+            <p class="auth-tagline">Secure Your Future in Cybersecurity</p>
+        </div>
+
+        <!-- Login Form -->
+        <div id="loginForm" class="auth-form active">
+            <h3 class="form-title">Welcome Back</h3>
+            <p class="form-subtitle">Login to continue your learning journey</p>
+            
+            <div class="input-group">
+                <label for="loginEmail">Email Address</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                <span class="input-icon">📧</span>
+            </div>
+            
+            <div class="input-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                <span class="input-icon">🔒</span>
+            </div>
+            
+            <div class="form-options">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="rememberMe">
+                    <span>Remember me</span>
+                </label>
+                <a href="#" class="forgot-link">Forgot Password?</a>
+            </div>
+            
+            <button type="button" class="auth-btn" onclick="handleLogin()">
+                <span>Login</span>
+                <div class="btn-glow"></div>
+            </button>
+            
+            <div class="form-divider">
+                <span>or continue with</span>
+            </div>
+            
+            <div class="social-login">
+                <button class="social-btn google-btn">
+                    <span>🔍</span> Google
+                </button>
+                <button class="social-btn github-btn">
+                    <span>💻</span> GitHub
+                </button>
+            </div>
+            
+            <p class="form-switch">
+                Don't have an account? 
+                <a href="#" onclick="switchToSignup(event)">Sign up here</a>
+            </p>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signupForm" class="auth-form">
+            <h3 class="form-title">Create Account</h3>
+            <p class="form-subtitle">Start your cybersecurity journey today</p>
+            
+            <div class="input-group">
+                <label for="signupName">Full Name</label>
+                <input type="text" id="signupName" placeholder="Enter your full name" required>
+                <span class="input-icon">👤</span>
+            </div>
+            
+            <div class="input-group">
+                <label for="signupEmail">Email Address</label>
+                <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                <span class="input-icon">📧</span>
+            </div>
+            
+            <div class="input-group">
+                <label for="signupPassword">Password</label>
+                <input type="password" id="signupPassword" placeholder="Create a strong password" required>
+                <span class="input-icon">🔒</span>
+            </div>
+            
+            <div class="input-group">
+                <label for="signupConfirmPassword">Confirm Password</label>
+                <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                <span class="input-icon">🔐</span>
+            </div>
+            
+            <div class="form-options">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="acceptTerms" required>
+                    <span>I agree to Terms & Conditions</span>
+                </label>
+            </div>
+            
+            <button type="button" class="auth-btn" onclick="handleSignup()">
+                <span>Create Account</span>
+                <div class="btn-glow"></div>
+            </button>
+            
+            <div class="form-divider">
+                <span>or sign up with</span>
+            </div>
+            
+            <div class="social-login">
+                <button class="social-btn google-btn">
+                    <span>🔍</span> Google
+                </button>
+                <button class="social-btn github-btn">
+                    <span>💻</span> GitHub
+                </button>
+            </div>
+            
+            <p class="form-switch">
+                Already have an account? 
+                <a href="#" onclick="switchToLogin(event)">Login here</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="brand-logo">🛡️</div>
+                <div class="brand-info">
+                    <div class="brand-name">CyberMastery Hub</div>
+                    <div class="brand-tagline">From Zero to Cyber Hero</div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#domains" class="nav-link">Domains</a></li>
+                <li><a href="#labs" class="nav-link">Labs</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#community" class="nav-link">Community</a></li>
+                <li><a href="#resources" class="nav-link">Resources</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="threat-indicator">
+                    <span class="threat-dot"></span>
+                    <span class="threat-text">Live Threats</span>
+                </div>
+                <a href="http://127.0.0.1:5500/video/study-platform.html" class="btn btn-sm btn-primary"> Start Learning</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="cyber-grid"></div>
+            <div class="floating-particles"></div>
+            <div class="gradient-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-main">
+                <h1 class="hero-title">
+                    <span class="title-line">Master the</span>
+                    <span class="title-highlight">Digital Defense</span>
+                </h1>
+                <p class="hero-subtitle">Complete cybersecurity learning ecosystem designed to transform you from zero to cyber hero</p>
+                <div class="typing-container">
+                    <span class="typing-prefix">Become a</span>
+                    <span class="typed-text" id="typedText"></span>
+                    <span class="cursor">|</span>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-lg" onclick="scrollToSection('domains')">
+                        <span>Explore Domains</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                    <button class="btn btn-outline btn-lg" onclick="window.location.href='http://127.0.0.1:5500/learn/no/index.html'">
+                    <span>Try Labs</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="120">0</div>
+                    <div class="stat-label">Courses</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="200">0</div>
+                    <div class="stat-label">Hands-on Labs</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="85">0</div>
+                    <div class="stat-label">Job Placement %</div>
+                </div>
+            </div>
+        </div>
+        <div class="threat-ticker">
+            <div class="ticker-content">
+                <span>🚨 Latest Threats: CVE-2024-4367 Chrome RCE • Zero-day in Apache Struts • Advanced Persistent Threat targeting financial sector • New ransomware variant detected</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cybersecurity Domains -->
+    <section id="domains" class="domains-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Master All Cybersecurity Domains</h2>
+                <p class="section-subtitle">Choose your specialization and start your journey to becoming a cybersecurity expert</p>
+            </div>
+            <div class="domains-grid" id="domainsGrid">
+                <!-- Domains will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Hands-on Virtual Labs -->
+    <section id="labs" class="labs-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Hands-on Virtual Labs</h2>
+                <p class="section-subtitle">Practice in real-world environments with TryHackMe-style interactive challenges</p>
+            </div>
+            <div class="labs-container">
+                <div class="labs-sidebar">
+                    <div class="lab-filters">
+                        <h3>Categories</h3>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-category="all">All Labs</button>
+                            <button class="filter-btn" data-category="penetration-testing">Penetration Testing</button>
+                            <button class="filter-btn" data-category="digital-forensics">Digital Forensics</button>
+                            <button class="filter-btn" data-category="network-security">Network Security</button>
+                            <button class="filter-btn" data-category="siem-operations">SIEM Operations</button>
+                        </div>
+                    </div>
+                    <div class="difficulty-filter">
+                        <h3>Difficulty</h3>
+                        <div class="difficulty-buttons">
+                            <button class="difficulty-btn active" data-difficulty="all">All Levels</button>
+                            <button class="difficulty-btn" data-difficulty="beginner">Beginner</button>
+                            <button class="difficulty-btn" data-difficulty="intermediate">Intermediate</button>
+                            <button class="difficulty-btn" data-difficulty="advanced">Advanced</button>
+                            <button class="difficulty-btn" data-difficulty="expert">Expert</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="labs-content">
+                    <div class="labs-grid" id="labsGrid">
+                        <!-- Labs will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certification Preparation -->
+    <section id="certifications" class="certifications-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Certification Preparation</h2>
+                <p class="section-subtitle">Industry-leading certification tracks with high pass rates</p>
+            </div>
+            <div class="certifications-grid" id="certificationsGrid">
+                <!-- Certifications will be populated by JavaScript -->
+            </div>
+            <div class="cert-success-stats">
+                <div class="success-item">
+                    <div class="success-icon">🏆</div>
+                    <div class="success-number">92%</div>
+                    <div class="success-label">Average Pass Rate</div>
+                </div>
+                <div class="success-item">
+                    <div class="success-icon">📜</div>
+                    <div class="success-number">25</div>
+                    <div class="success-label">Certification Tracks</div>
+                </div>
+                <div class="success-item">
+                    <div class="success-icon">🚀</div>
+                    <div class="success-number">40%</div>
+                    <div class="success-label">Salary Increase</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Hub -->
+    <section id="community" class="community-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Join the Community</h2>
+                <p class="section-subtitle">Connect, learn, and grow with cybersecurity professionals worldwide</p>
+            </div>
+            <div class="community-content">
+                <div class="community-stats">
+                    <div class="community-card glass-card">
+                        <div class="card-icon">👥</div>
+                        <div class="card-number">12,500</div>
+                        <div class="card-label">Active Learners</div>
+                    </div>
+                    <div class="community-card glass-card">
+                        <div class="card-icon">👨‍🏫</div>
+                        <div class="card-number">25</div>
+                        <div class="card-label">Expert Mentors</div>
+                    </div>
+                    <div class="community-card glass-card">
+                        <div class="card-icon">📚</div>
+                        <div class="card-number">150</div>
+                        <div class="card-label">Study Groups</div>
+                    </div>
+                    <div class="community-card glass-card">
+                        <div class="card-icon">🎉</div>
+                        <div class="card-number">8</div>
+                        <div class="card-label">Monthly Events</div>
+                    </div>
+                </div>
+                <div class="community-features">
+                    <div class="feature-card glass-card">
+                        <h3>Discussion Forums</h3>
+                        <p>Join topic-specific discussions on network security, ethical hacking, digital forensics, and career advice</p>
+                        <div class="forum-tags">
+                            <span class="forum-tag">Network Security</span>
+                            <span class="forum-tag">Ethical Hacking</span>
+                            <span class="forum-tag">Digital Forensics</span>
+                            <span class="forum-tag">Career Advice</span>
+                        </div>
+                        <button class="btn btn-outline btn-sm">Join Discussions</button>
+                    </div>
+                    <div class="feature-card glass-card">
+                        <h3>Mentorship Program</h3>
+                        <p>Get guidance from industry experts and experienced professionals in your chosen cybersecurity domain</p>
+                        <div class="mentor-benefits">
+                            <div class="benefit-item">✓ 1-on-1 sessions</div>
+                            <div class="benefit-item">✓ Career guidance</div>
+                            <div class="benefit-item">✓ Interview preparation</div>
+                        </div>
+                        <button class="btn btn-primary btn-sm">Find a Mentor</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources & Tools -->
+    <section id="resources" class="resources-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Resources & Tools</h2>
+                <p class="section-subtitle">Access professional-grade tools and comprehensive knowledge base</p>
+            </div>
+            <div class="resources-content">
+                <div class="tools-categories">
+                    <div class="tools-category glass-card">
+                        <h3>🔍 Penetration Testing</h3>
+                        <div class="tools-list">
+                            <span class="tool-item">Kali Linux</span>
+                            <span class="tool-item">Metasploit</span>
+                            <span class="tool-item">Burp Suite</span>
+                            <span class="tool-item">Nmap</span>
+                            <span class="tool-item">Wireshark</span>
+                        </div>
+<button class="btn btn-outline btn-sm" onclick="window.location.href='http://127.0.0.1:5500/Cybersecurity%204/index.html'">
+    Access Tools
+</button>
+</div>
+
+                    <div class="tools-category glass-card">
+                        <h3>🕵️ Digital Forensics</h3>
+                        <div class="tools-list">
+                            <span class="tool-item">Autopsy</span>
+                            <span class="tool-item">Volatility</span>
+                            <span class="tool-item">Sleuth Kit</span>
+                            <span class="tool-item">FTK Imager</span>
+                            <span class="tool-item">Cellebrite</span>
+                        </div>
+                        <button class="btn btn-outline btn-sm">Access Tools</button>
+                    </div>
+                    <div class="tools-category glass-card">
+                        <h3>📊 SIEM Platforms</h3>
+                        <div class="tools-list">
+                            <span class="tool-item">Splunk</span>
+                            <span class="tool-item">IBM QRadar</span>
+                            <span class="tool-item">ELK Stack</span>
+                            <span class="tool-item">OSSIM</span>
+                            <span class="tool-item">LogRhythm</span>
+                        </div>
+                        <button class="btn btn-outline btn-sm">Access Platforms</button>
+                    </div>
+                    <div class="tools-category glass-card">
+                        <h3>🛡️ Vulnerability Assessment</h3>
+                        <div class="tools-list">
+                            <span class="tool-item">Nessus</span>
+                            <span class="tool-item">OpenVAS</span>
+                            <span class="tool-item">Qualys</span>
+                            <span class="tool-item">Rapid7</span>
+                            <span class="tool-item">Acunetix</span>
+                        </div>
+<button class="btn btn-outline btn-sm" onclick="window.location.href='http://127.0.0.1:5500/Cybersecurity%203/index.html'">
+    Access Tools
+</button>
+
+
+</div>
+
+
+                </div>
+                <div class="knowledge-base">
+                    <div class="kb-section">
+                        <h3>📚 Knowledge Base</h3>
+                        <div class="kb-items">
+                            <div class="kb-item">
+                                <div class="kb-icon">📖</div>
+                                <div class="kb-content">
+                                    <h4>Technical Documentation</h4>
+                                    <p>Step-by-step guides and tutorials</p>
+                                </div>
+                            </div>
+                            <div class="kb-item">
+                                <div class="kb-icon">🎥</div>
+                                <div class="kb-content">
+                                    <h4>Video Lectures</h4>
+                                    <p>Expert-led instructional content</p>
+                                </div>
+                            </div>
+                            <div class="kb-item">
+                                <div class="kb-icon">📄</div>
+                                <div class="kb-content">
+                                    <h4>Interactive eBooks</h4>
+                                    <p>Searchable digital textbooks</p>
+                                </div>
+                            </div>
+                            <div class="kb-item">
+                                <div class="kb-icon">🗞️</div>
+                                <div class="kb-content">
+                                    <h4>Threat Intelligence</h4>
+                                    <p>Latest attack vectors and IOCs</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements System -->
+    <section id="achievements" class="achievements-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Achievement System</h2>
+                <p class="section-subtitle">Track your progress and earn badges as you master cybersecurity skills</p>
+            </div>
+            <div class="achievements-grid" id="achievementsGrid">
+                <!-- Achievements will be populated by JavaScript -->
+            </div>
+            <div class="progress-visualization">
+                <div class="progress-card glass-card">
+                    <h3>Your Learning Journey</h3>
+                    <div class="journey-path">
+                        <div class="journey-step completed">
+                            <div class="step-icon">🎯</div>
+                            <div class="step-title">Getting Started</div>
+                        </div>
+                        <div class="journey-step current">
+                            <div class="step-icon">🧪</div>
+                            <div class="step-title">Hands-on Practice</div>
+                        </div>
+                        <div class="journey-step">
+                            <div class="step-icon">🏆</div>
+                            <div class="step-title">Certification Ready</div>
+                        </div>
+                        <div class="journey-step">
+                            <div class="step-icon">🛡️</div>
+                            <div class="step-title">Expert Level</div>
+                        </div>
+                    </div>
+                    <div class="overall-progress">
+                        <div class="progress-label">Overall Progress</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-progress="35"></div>
+                        </div>
+                        <div class="progress-percentage">35%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <div class="brand-logo">🛡️</div>
+                        <div class="brand-info">
+                            <div class="brand-name">CyberMastery Hub</div>
+                            <div class="brand-tagline">From Zero to Cyber Hero</div>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        The most comprehensive cybersecurity learning ecosystem designed to transform aspiring professionals into industry experts.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Learning Paths</h4>
+                        <a href="#domains">Network Security</a>
+                        <a href="#domains">Ethical Hacking</a>
+                        <a href="#domains">Digital Forensics</a>
+                        <a href="#domains">SOC Analysis</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Resources</h4>
+                        <a href="#labs">Virtual Labs</a>
+                        <a href="#certifications">Certifications</a>
+                        <a href="#resources">Tools & Software</a>
+                        <a href="#community">Community</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Support</h4>
+                        <a href="#">Help Center</a>
+                        <a href="#">Documentation</a>
+                        <a href="#">Contact Us</a>
+                        <a href="#">Status</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-stats">
+                    <span>50,000+ Active Learners</span>
+                    <span>•</span>
+                    <span>85% Job Placement Rate</span>
+                    <span>•</span>
+                    <span>50+ Industry Partners</span>
+                </div>
+                <div class="footer-legal">
+                    <p>&copy; 2024 CyberMastery Hub. All rights reserved. Built for the future of cybersecurity education.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

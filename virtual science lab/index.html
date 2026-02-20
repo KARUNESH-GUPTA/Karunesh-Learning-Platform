@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Science Lab - Interactive Learning Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">🧪 Virtual Science Lab</h1>
+                <nav class="nav-menu">
+                    <button class="nav-btn" data-section="dashboard">Dashboard</button>
+                    <button class="nav-btn" data-section="chemistry">Chemistry</button>
+                    <button class="nav-btn" data-section="physics">Physics</button>
+                    <button class="nav-btn" data-section="biology">Biology</button>
+                    <button class="nav-btn" data-section="profile">Profile</button>
+                    <button class="nav-btn" data-section="leaderboard">Leaderboard</button>
+                </nav>
+                <div class="user-info">
+                    <span id="user-points" class="points-display">1250 pts</span>
+                    <span id="user-level" class="level-display">Level 3</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <div class="welcome-banner">
+                    <h2>Welcome back, <span id="user-name">Alex Student</span>! 🎉</h2>
+                    <p>Ready to explore the fascinating world of science?</p>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Quick Access Labs -->
+                    <div class="lab-shortcuts">
+                        <h3>Explore Labs</h3>
+                        <div class="lab-cards">
+                            <div class="lab-card chemistry-card" data-lab="chemistry">
+                                <div class="lab-icon">🧪</div>
+                                <h4>Chemistry Lab</h4>
+                                <p>Mix chemicals and observe reactions</p>
+                                <div class="lab-stats">5 experiments completed</div>
+                            </div>
+                            <div class="lab-card physics-card" data-lab="physics">
+                                <div class="lab-icon">⚡</div>
+                                <h4>Physics Lab</h4>
+                                <p>Build circuits and study motion</p>
+                                <div class="lab-stats">4 experiments completed</div>
+                            </div>
+                            <div class="lab-card biology-card" data-lab="biology">
+                                <div class="lab-icon">🧬</div>
+                                <h4>Biology Lab</h4>
+                                <p>Explore the human body</p>
+                                <div class="lab-stats">6 organs explored</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Progress Tracker -->
+                    <div class="progress-section">
+                        <h3>Your Progress</h3>
+                        <div class="progress-chart-container" style="position: relative; height: 300px;">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Daily Challenge -->
+                    <div class="daily-challenge">
+                        <h3>Daily Challenge 🏆</h3>
+                        <div class="challenge-card">
+                            <h4 id="challenge-title">Mix It Up!</h4>
+                            <p id="challenge-description">Complete 2 chemistry experiments today</p>
+                            <div class="challenge-reward">Reward: <span id="challenge-points">100</span> points</div>
+                            <button class="btn btn--primary" id="start-challenge">Start Challenge</button>
+                        </div>
+                    </div>
+
+                    <!-- Recent Achievements -->
+                    <div class="recent-achievements">
+                        <h3>Recent Achievements</h3>
+                        <div class="achievement-list" id="recent-badges">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chemistry Lab Section -->
+        <section id="chemistry" class="section lab-section">
+            <div class="container">
+                <div class="lab-header">
+                    <h2>🧪 Chemistry Lab</h2>
+                    <div class="lab-controls">
+                        <button class="btn btn--outline" id="reset-chemistry">Reset Lab</button>
+                        <div class="safety-indicator">
+                            <span class="safety-light safe" id="safety-status"></span>
+                            <span>Lab Status: Safe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chemistry-workspace">
+                    <!-- Chemical Storage -->
+                    <div class="chemical-storage">
+                        <h3>Chemical Storage</h3>
+                        <div class="chemicals-grid">
+                            <div class="chemical-bottle" draggable="true" data-chemical="vinegar">
+                                <div class="bottle-icon">🧴</div>
+                                <span>Vinegar</span>
+                            </div>
+                            <div class="chemical-bottle" draggable="true" data-chemical="baking_soda">
+                                <div class="bottle-icon">🧂</div>
+                                <span>Baking Soda</span>
+                            </div>
+                            <div class="chemical-bottle" draggable="true" data-chemical="copper_sulfate">
+                                <div class="bottle-icon">🟦</div>
+                                <span>Copper Sulfate</span>
+                            </div>
+                            <div class="chemical-bottle" draggable="true" data-chemical="sodium_hydroxide">
+                                <div class="bottle-icon">⚪</div>
+                                <span>Sodium Hydroxide</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lab Table -->
+                    <div class="lab-table">
+                        <div class="beaker-area" id="mixing-area">
+                            <div class="beaker" id="main-beaker">
+                                <div class="beaker-content" id="beaker-content"></div>
+                                <div class="reaction-effects" id="reaction-effects"></div>
+                            </div>
+                            <div class="lab-equipment">
+                                <button class="btn btn--primary" id="mix-chemicals">Mix</button>
+                                <button class="btn btn--secondary" id="clear-beaker">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experiment Library -->
+                    <div class="experiment-library">
+                        <h3>Experiment Library</h3>
+                        <div class="experiment-cards" id="chemistry-experiments">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Physics Lab Section -->
+        <section id="physics" class="section lab-section">
+            <div class="container">
+                <div class="lab-header">
+                    <h2>⚡ Physics Lab</h2>
+                    <div class="physics-modes">
+                        <button class="mode-btn active" data-mode="circuit">Circuit Builder</button>
+                        <button class="mode-btn" data-mode="pendulum">Pendulum</button>
+                    </div>
+                </div>
+
+                <!-- Circuit Builder -->
+                <div id="circuit-mode" class="physics-mode active">
+                    <div class="physics-workspace">
+                        <div class="component-library">
+                            <h3>Components</h3>
+                            <div class="components-grid">
+                                <div class="component" draggable="true" data-component="battery">
+                                    <div class="component-icon">🔋</div>
+                                    <span>Battery</span>
+                                </div>
+                                <div class="component" draggable="true" data-component="resistor">
+                                    <div class="component-icon">📊</div>
+                                    <span>Resistor</span>
+                                </div>
+                                <div class="component" draggable="true" data-component="led">
+                                    <div class="component-icon">💡</div>
+                                    <span>LED</span>
+                                </div>
+                                <div class="component" draggable="true" data-component="wire">
+                                    <div class="component-icon">〰️</div>
+                                    <span>Wire</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="circuit-board" id="circuit-workspace">
+                            <div class="circuit-grid"></div>
+                            <div class="circuit-readings">
+                                <div class="reading">Voltage: <span id="voltage-reading">0V</span></div>
+                                <div class="reading">Current: <span id="current-reading">0A</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pendulum Simulator -->
+                <div id="pendulum-mode" class="physics-mode">
+                    <div class="pendulum-workspace">
+                        <div class="pendulum-controls">
+                            <h3>Pendulum Settings</h3>
+                            <div class="control-group">
+                                <label class="form-label">Length (m):</label>
+                                <input type="range" id="pendulum-length" min="0.5" max="2" step="0.1" value="1" class="form-control">
+                                <span id="length-value">1.0m</span>
+                            </div>
+                            <div class="control-group">
+                                <label class="form-label">Mass (kg):</label>
+                                <input type="range" id="pendulum-mass" min="0.1" max="2" step="0.1" value="0.5" class="form-control">
+                                <span id="mass-value">0.5kg</span>
+                            </div>
+                            <div class="control-group">
+                                <label class="form-label">Release Angle (°):</label>
+                                <input type="range" id="pendulum-angle" min="5" max="45" step="5" value="15" class="form-control">
+                                <span id="angle-value">15°</span>
+                            </div>
+                            <button class="btn btn--primary" id="start-pendulum">Start Motion</button>
+                            <button class="btn btn--secondary" id="stop-pendulum">Stop</button>
+                        </div>
+
+                        <div class="pendulum-display">
+                            <div class="pendulum-container" id="pendulum-container">
+                                <div class="pendulum-string" id="pendulum-string"></div>
+                                <div class="pendulum-bob" id="pendulum-bob"></div>
+                            </div>
+                            <div class="pendulum-data">
+                                <div class="data-item">Period: <span id="pendulum-period">0.00s</span></div>
+                                <div class="data-item">Frequency: <span id="pendulum-frequency">0.00Hz</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Biology Lab Section -->
+        <section id="biology" class="section lab-section">
+            <div class="container">
+                <div class="lab-header">
+                    <h2>🧬 Biology Lab</h2>
+                    <div class="biology-modes">
+                        <button class="mode-btn active" data-mode="body">Human Body</button>
+                        <button class="mode-btn" data-mode="microscope">Microscope</button>
+                    </div>
+                </div>
+
+                <!-- Human Body Explorer -->
+                <div id="body-mode" class="biology-mode active">
+                    <div class="body-workspace">
+                        <div class="body-display">
+                            <div class="human-body-container">
+                                <div class="body-outline">
+                                    <div class="organ heart" data-organ="heart" style="top: 25%; left: 45%;">❤️</div>
+                                    <div class="organ lungs" data-organ="lungs" style="top: 20%; left: 35%;">🫁</div>
+                                    <div class="organ brain" data-organ="brain" style="top: 8%; left: 42%;">🧠</div>
+                                    <div class="organ liver" data-organ="liver" style="top: 35%; left: 55%;">🟤</div>
+                                    <div class="organ stomach" data-organ="stomach" style="top: 40%; left: 40%;">🟫</div>
+                                    <div class="organ kidneys" data-organ="kidneys" style="top: 45%; left: 30%;">🟣</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="organ-info" id="organ-info">
+                            <h3>Select an organ to learn more</h3>
+                            <p>Click on any organ in the human body to discover its functions and interesting facts!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Microscope Mode -->
+                <div id="microscope-mode" class="biology-mode">
+                    <div class="microscope-workspace">
+                        <div class="microscope-controls">
+                            <h3>Microscope Samples</h3>
+                            <div class="sample-buttons">
+                                <button class="btn btn--outline sample-btn" data-sample="plant-cell">Plant Cell</button>
+                                <button class="btn btn--outline sample-btn" data-sample="animal-cell">Animal Cell</button>
+                                <button class="btn btn--outline sample-btn" data-sample="bacteria">Bacteria</button>
+                            </div>
+                        </div>
+
+                        <div class="microscope-view" id="microscope-view">
+                            <div class="microscope-display">
+                                <div class="sample-view" id="sample-view">
+                                    Select a sample to view under the microscope
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="section">
+            <div class="container">
+                <div class="profile-header">
+                    <div class="avatar-section">
+                        <div class="avatar" id="user-avatar">👨‍🎓</div>
+                        <button class="btn btn--outline btn--sm" id="change-avatar">Change Avatar</button>
+                    </div>
+                    <div class="user-details">
+                        <h2 id="profile-name">Alex Student</h2>
+                        <p id="profile-class">Class 8 • Age 14</p>
+                        <div class="user-stats">
+                            <div class="stat">
+                                <span class="stat-value" id="profile-points">1250</span>
+                                <span class="stat-label">Points</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="profile-level">3</span>
+                                <span class="stat-label">Level</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value" id="profile-experiments">15</span>
+                                <span class="stat-label">Experiments</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-content">
+                    <div class="achievements-section">
+                        <h3>Achievements & Badges</h3>
+                        <div class="badges-grid" id="user-badges">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+
+                    <div class="activity-timeline">
+                        <h3>Recent Activity</h3>
+                        <div class="timeline" id="activity-timeline">
+                            <!-- Dynamic content -->
+                        </div>
+                    </div>
+
+                    <div class="customization-panel">
+                        <h3>Customization</h3>
+                        <div class="theme-selector">
+                            <label class="form-label">Theme:</label>
+                            <select class="form-control" id="theme-selector">
+                                <option value="auto">Auto (System)</option>
+                                <option value="light">Light</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+                        <div class="sound-controls">
+                            <label class="form-label">
+                                <input type="checkbox" id="sound-toggle" checked> Enable Sound Effects
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leaderboard Section -->
+        <section id="leaderboard" class="section">
+            <div class="container">
+                <h2>🏆 Leaderboard</h2>
+                <div class="leaderboard-filters">
+                    <button class="filter-btn active" data-period="overall">Overall</button>
+                    <button class="filter-btn" data-period="weekly">This Week</button>
+                    <button class="filter-btn" data-period="monthly">This Month</button>
+                </div>
+
+                <div class="leaderboard-table">
+                    <div class="leaderboard-header">
+                        <div class="rank-column">Rank</div>
+                        <div class="name-column">Student</div>
+                        <div class="points-column">Points</div>
+                        <div class="level-column">Level</div>
+                    </div>
+                    <div class="leaderboard-body" id="leaderboard-list">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal for achievements -->
+        <div class="modal hidden" id="achievement-modal">
+            <div class="modal-content">
+                <h3>🎉 Achievement Unlocked!</h3>
+                <div class="achievement-display" id="achievement-display">
+                    <div class="achievement-icon" id="modal-achievement-icon">🏆</div>
+                    <h4 id="modal-achievement-name">Achievement Name</h4>
+                    <p id="modal-achievement-description">Achievement description</p>
+                </div>
+                <button class="btn btn--primary" id="close-achievement">Awesome!</button>
+            </div>
+        </div>
+
+        <!-- Modal for organ information -->
+        <div class="modal hidden" id="organ-modal">
+            <div class="modal-content">
+                <button class="modal-close" id="close-organ-modal">×</button>
+                <div class="organ-detail" id="organ-detail">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

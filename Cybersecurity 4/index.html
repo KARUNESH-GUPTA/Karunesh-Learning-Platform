@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🕶️ Dark Web Attack Simulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Matrix Rain Background -->
+    <div class="matrix-rain" id="matrix-rain"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav-header">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="glitch" data-text="CYBER_DEFENSE">CYBER_DEFENSE</span>
+            </div>
+            <div class="nav-controls">
+                <button class="btn-neon btn-sm" id="mode-toggle">
+                    <span id="mode-text">BEGINNER</span>
+                </button>
+                <button class="btn-neon btn-sm" id="console-btn">
+                    HACKER CONSOLE
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Landing Section -->
+    <section class="hero-section" id="landing">
+        <div class="glitch-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="glitch" data-text="🕶️ Dark Web Attack Simulator">🕶️ Dark Web Attack Simulator</span>
+                </h1>
+                <p class="hero-subtitle typewriter" id="hero-text">
+                    Learn how cyberattacks work and how to defend against them.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-cyber btn-primary" data-target="attack-simulation">
+                        <span>START ATTACK SIMULATION</span>
+                        <div class="cyber-glow"></div>
+                    </button>
+                    <button class="btn-cyber btn-secondary" data-target="defense-dashboard">
+                        <span>VIEW DEFENSE STRATEGIES</span>
+                        <div class="cyber-glow"></div>
+                    </button>
+                    <button class="btn-cyber btn-tertiary" data-target="profile-section">
+                        <span>PROFILE SECTION</span>
+                        <div class="cyber-glow"></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Attack Simulation Section -->
+    <section class="section attack-section" id="attack-simulation">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="neon-text">ATTACK SIMULATION</span>
+            </h2>
+            <div class="terminal-container">
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <span class="terminal-btn close"></span>
+                            <span class="terminal-btn minimize"></span>
+                            <span class="terminal-btn maximize"></span>
+                        </div>
+                        <div class="terminal-title">CYBER_ATTACK_SIMULATOR v2.1.3</div>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-output" id="terminal-output">
+                            <div class="terminal-line">
+                                <span class="prompt">root@darkweb:~$</span>
+                                <span class="cursor">|</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="attack-controls">
+                    <button class="btn-attack" id="start-attack">INITIATE ATTACK</button>
+                    <button class="btn-defend" id="activate-defense">ACTIVATE DEFENSE</button>
+                </div>
+            </div>
+            <div class="attack-results" id="attack-results"></div>
+        </div>
+    </section>
+
+    <!-- Defense Dashboard Section -->
+    <section class="section defense-section" id="defense-dashboard">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="neon-text">DEFENSE DASHBOARD</span>
+            </h2>
+            <div class="defense-grid">
+                <div class="defense-card" data-defense="firewall">
+                    <div class="card-header">
+                        <span class="defense-icon">🔐</span>
+                        <h3>FIREWALL</h3>
+                        <label class="cyber-switch">
+                            <input type="checkbox" class="defense-toggle" data-defense="firewall">
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+                    <div class="card-body">
+                        <p>Blocks network intrusions and unauthorized access attempts</p>
+                        <div class="defense-status" id="firewall-status">OFFLINE</div>
+                    </div>
+                    <div class="card-glow firewall-glow"></div>
+                </div>
+
+                <div class="defense-card" data-defense="antimalware">
+                    <div class="card-header">
+                        <span class="defense-icon">🛡️</span>
+                        <h3>ANTI-MALWARE</h3>
+                        <label class="cyber-switch">
+                            <input type="checkbox" class="defense-toggle" data-defense="antimalware">
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+                    <div class="card-body">
+                        <p>Stops malware injections and malicious software</p>
+                        <div class="defense-status" id="antimalware-status">OFFLINE</div>
+                    </div>
+                    <div class="card-glow antimalware-glow"></div>
+                </div>
+
+                <div class="defense-card" data-defense="encryption">
+                    <div class="card-header">
+                        <span class="defense-icon">🔑</span>
+                        <h3>ENCRYPTION</h3>
+                        <label class="cyber-switch">
+                            <input type="checkbox" class="defense-toggle" data-defense="encryption">
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+                    <div class="card-body">
+                        <p>Secures data transmission and storage</p>
+                        <div class="defense-status" id="encryption-status">OFFLINE</div>
+                    </div>
+                    <div class="card-glow encryption-glow"></div>
+                </div>
+
+                <div class="defense-card" data-defense="identity">
+                    <div class="card-header">
+                        <span class="defense-icon">👤</span>
+                        <h3>IDENTITY GUARD</h3>
+                        <label class="cyber-switch">
+                            <input type="checkbox" class="defense-toggle" data-defense="identity">
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div>
+                    <div class="card-body">
+                        <p>Prevents phishing attacks and identity theft</p>
+                        <div class="defense-status" id="identity-status">OFFLINE</div>
+                    </div>
+                    <div class="card-glow identity-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-Time Attack Map Section -->
+    <section class="section map-section" id="attack-map">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="neon-text">REAL-TIME ATTACK MAP</span>
+            </h2>
+            <div class="world-map">
+                <div class="map-container">
+                    <div class="attack-node" style="top: 20%; left: 15%;" data-country="USA">
+                        <div class="node-pulse red"></div>
+                        <div class="attack-line" data-target="70% 80%"></div>
+                    </div>
+                    <div class="attack-node" style="top: 15%; left: 50%;" data-country="Russia">
+                        <div class="node-pulse red"></div>
+                        <div class="attack-line" data-target="40% 60%"></div>
+                    </div>
+                    <div class="attack-node" style="top: 30%; left: 70%;" data-country="China">
+                        <div class="node-pulse red"></div>
+                        <div class="attack-line" data-target="50% 70%"></div>
+                    </div>
+                    <div class="defense-node" style="top: 50%; left: 40%;" data-country="India">
+                        <div class="node-pulse green"></div>
+                        <div class="shield-animation"></div>
+                    </div>
+                </div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <div class="legend-indicator red"></div>
+                        <span>Attack Sources</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-indicator green"></div>
+                        <span>Defense Centers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="section profile-section" id="profile-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="neon-text">HACKER PROFILE</span>
+            </h2>
+            <div class="profile-container">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <div class="avatar-frame">
+                            <div class="avatar-placeholder">KG</div>
+                            <div class="avatar-glow"></div>
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <h3 class="profile-name glitch" data-text="KARUNESH GUPTA">KARUNESH GUPTA</h3>
+                        <p class="profile-role">Cybersecurity Enthusiast | B.Tech CSE</p>
+                        <p class="profile-goal">Future Hacker & Quantum Security Scientist</p>
+                        <p class="profile-skills">Skills: Frontend, Python, Cybersecurity Basics</p>
+                    </div>
+                    <div class="profile-links">
+                        <a href="https://www.credly.com/users/karunesh-gupta" target="_blank" class="profile-link">
+                            <span>CREDLY PROFILE</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/karunesh-gupta-507b242a9" target="_blank" class="profile-link">
+                            <span>LINKEDIN PROFILE</span>
+                        </a>
+                        <a href="https://learn.microsoft.com/en-us/users/karuneshgupta3838/" target="_blank" class="profile-link">
+                            <span>MICROSOFT LEARN</span>
+                        </a>
+                        <a href="https://www.hackerrank.com/profile/karuneshgupta786" target="_blank" class="profile-link">
+                            <span>HACKERRANK PROFILE</span>
+                        </a>
+                        <a href="https://sunilkirana.my.canva.site/karunesh-gupta" target="_blank" class="profile-link">
+                            <span>PORTFOLIO</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Section -->
+    <section class="section learning-section" id="learning-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="neon-text">CYBERSECURITY KNOWLEDGE</span>
+            </h2>
+            <div class="learning-grid">
+                <div class="flip-card" data-topic="sql-injection">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>SQL INJECTION</h3>
+                            <div class="card-icon">💉</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Code injection technique exploiting web application vulnerabilities</p>
+                            <button class="learn-more-btn" data-topic="sql-injection">LEARN MORE</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" data-topic="phishing">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>PHISHING</h3>
+                            <div class="card-icon">🎣</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Social engineering attacks using fake communications</p>
+                            <button class="learn-more-btn" data-topic="phishing">LEARN MORE</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" data-topic="firewall">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>FIREWALLS</h3>
+                            <div class="card-icon">🔥</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Network security barriers filtering traffic</p>
+                            <button class="learn-more-btn" data-topic="firewall">LEARN MORE</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" data-topic="encryption">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>ENCRYPTION</h3>
+                            <div class="card-icon">🔐</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Data protection through algorithmic encoding</p>
+                            <button class="learn-more-btn" data-topic="encryption">LEARN MORE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="section achievements-section" id="achievements">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="neon-text">ACHIEVEMENTS</span>
+            </h2>
+            <div class="achievements-grid" id="achievements-grid">
+                <!-- Achievements will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" class="footer-link glitch" data-text="ABOUT">ABOUT</a>
+                    <span class="separator">|</span>
+                    <a href="#" class="footer-link glitch" data-text="PRIVACY">PRIVACY</a>
+                    <span class="separator">|</span>
+                    <a href="#" class="footer-link glitch" data-text="CONTACT">CONTACT</a>
+                </div>
+                <div class="footer-copyright">
+                    <p class="glitch" data-text="© 2025 CYBER DEFENSE SIMULATOR">© 2025 CYBER DEFENSE SIMULATOR</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hacker Console Modal -->
+    <div class="modal hidden" id="hacker-console">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="console-header">
+                <h3>HACKER CONSOLE</h3>
+                <button class="close-btn" id="close-console">&times;</button>
+            </div>
+            <div class="console-body">
+                <div class="console-output" id="console-output">
+                    <div class="console-line">System initialized...</div>
+                    <div class="console-line">Waiting for commands...</div>
+                </div>
+                <div class="console-input">
+                    <span class="console-prompt">hacker@darkweb:~$</span>
+                    <input type="text" id="console-input" placeholder="Enter command..." autocomplete="off">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learning Modal -->
+    <div class="modal hidden" id="learning-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Learning Topic</h3>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
